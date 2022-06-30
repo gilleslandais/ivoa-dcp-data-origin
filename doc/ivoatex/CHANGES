@@ -1,0 +1,51 @@
+Version 1.2 (unreleased)
+
+  * update_generated now works with python3 (you can fall back to python2 
+    by writing PYTHON=python into your Makefile).
+
+  * New VO-DML translator for the generator.
+
+	* Removed legacy entries for IVOA standards from ivoabib.bib.  Use records
+	  from docrepo.bib instead.
+	
+  * Minor fixes (e.g., escaping in schema snippets, &-less bibanchors,
+    titles in HTML output).
+
+
+Version 1.1 (2018-08-14)
+
+  * New bibliography docrepo.bib, which is the preferred way to reference
+    IVOA documents now.
+
+	* ivoaTeX can now produce architecture diagrams.
+
+  * make upload  uploads a document package to the IVOA document repository
+
+  * Adding an auxilaryurl macro for resources delivered with the document
+    but external to it.
+
+  * Support for endorsed notes (and PENs)
+
+  * There is now a template StandardsRegExt record.
+
+  * Authors and Editors are now TeX-formatted even in HTML rendering
+
+
+Version 1.0 (2016-04-23):
+  
+  * lstlistings options are now available as CSS classes, and 
+    basicstyle=\footnotesize is interpreted for HTML.
+
+  * Updated to tth 4.08
+
+  * Improved URL formatting (e.g., line breaks), including nolinkurl support
+
+  * Most of README has migrated to the IVOA note ivoatexDoc
+
+  * Multiple editors are now possible
+
+  * Document-specific CSS is now supported.
+
+  * Support for generated content (update_generated.py, make generate)
+  
+  * ivoa.bst is now used to format references
