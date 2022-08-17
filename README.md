@@ -1,7 +1,7 @@
 # Data Origin in the VO
 
 The goal of the document is to make the Data Origin more visible in
-the query results executed in the Virtual Observatory. The document lists
+the query results executed in the **Virtual Observatory**. The document lists
 meta-data required to provide sufficient **traceability** to end-users in order to
 improve the understanding of the resultsets and enabling its reuse and its
 **citation**.
@@ -34,10 +34,10 @@ also hosted in a Data Center like CDS, GAVO, etc. The data curation
 depends of the Data Center which can add associated data, enrich
 meta-data (eg: add filter for magnitude) or make a sub-selection of
 columns.
-- Give me a bibliography of everything I’ve used in the workflow" (M.Demleitner)
+- "Give me a bibliography of everything I've used in the workflow" (M.Demleitner)
 
 
-## Metadata expected
+## Metadata expected
 Metadata that can enrich a VOTable output:
 
 - Agents: author(s) / Institue / Space agency / Editor / Journal
