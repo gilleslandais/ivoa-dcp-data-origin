@@ -10,7 +10,7 @@ DOCVERSION = 1.0
 DOCDATE = ???
 
 # What is it you're writing: NOTE, WD, PR, REC, PEN, or EN
-DOCTYPE = ???
+DOCTYPE = NOTE 
 
 # An e-mail address of the person doing the submission to the document
 # repository (can be empty until a make upload is being made)

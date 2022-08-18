@@ -34,6 +34,35 @@ also hosted in a Data Center like CDS, GAVO, etc. The data curation
 depends of the Data Center which can add associated data, enrich
 meta-data (eg: add filter for magnitude) or make a sub-selection of
 columns.
+<<<<<<< HEAD
+- Give me a bibliography of everything I’ve used in the workflow" (M.Demleitner)
+- \textcolor{red}{What else ? ....}
+
+## Metadata expected
+Tracing Data origin can be complex. It depends on the granularity expected.
+- A basic approach consists in adding a dictionary *keyword=value* gathering information having no interactions with each other. This approach could be typically serialized in VOTable using *INFO* tag. 
+- An advanced approach consists in a rich serialization that allows information to interact. Typically a resource (ie: Entity in Provenance) can be attached to an agent (a Person or an institute).
+This approach requires an advanced VOTable serialization, a remote Provenance service or a TAP schema evolution.
+
+In a first time, we will limit the investigation to the DCP scope by listing the relevant information from either approach.
+
+### Basic metadata:
+The following concept can be repeated and could follow a controlled vocabulary.
+
+- Author: name or orcid
+- Editor: name or URL
+- Journal: name or URL
+- Organization: name or URL
+
+
+- Name of the datacenter that provides the result
+- Resource Identifier: ivoid of resource(s) hosted by the service which returns the result
+- Resource citation: DOI, bibcode of resource(s) hosted by the service which returns the result
+- Remote resource identifier: a remote ressource which was used to build the result
+- Remote resource citation: a remote ressource which was used to build the result
+
+
+=======
 - "Give me a bibliography of everything I've used in the workflow" (M.Demleitner)
 
 
@@ -47,6 +76,27 @@ Metadata that can enrich a VOTable output:
 - Identifier: DOI, bibcode...
 - Access protocol
 - Licences
+>>>>>>> c65476f134f8a131623e934e93045d5ba4652a88
 - Curation level
-- Any additional information in text plain that complete the result
+- Licence: free text
+- Access protocol: eg.TAP query, SCS, ...
+- Query: eg: ADQL
+
+- Comment: Any additional information in text plain that complete the result
 - ...?
+
+
+### Advanced metadata
+- Explain the link existing between a resource provided by the datacenter and the original repository <br/>
+(eg: Gaia table provided by CDS as a variant form of the original ESA table)
+- Link Agents (author, editor, organization, ...) with the resources implied to build the result
+- Nature of the information <br/>
+explain transformation operated by datacenter. 
+for instance, "this column has been added by the datacenter", "this resource is a subset of the original data" ...
+- specialization of the information<br/>
+For instance :
+    - an *article* is specialized with attributes: PID, journal name, date, link to agent(s)..
+    - a *resource* : **type** , url, PID, comment, link to agent(s)
+- ...
+
+
