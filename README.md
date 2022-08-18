@@ -34,11 +34,10 @@ also hosted in a Data Center like CDS, GAVO, etc. The data curation
 depends of the Data Center which can add associated data, enrich
 meta-data (eg: add filter for magnitude) or make a sub-selection of
 columns.
-<<<<<<< HEAD
-- Give me a bibliography of everything I’ve used in the workflow" (M.Demleitner)
-- \textcolor{red}{What else ? ....}
+- Give me a bibliography of everything I've used in the workflow" (M.Demleitner)
+- <span class='color:red'>What else ? ....</span>
 
-## Metadata expected
+## Metadata expected
 Tracing Data origin can be complex. It depends on the granularity expected.
 - A basic approach consists in adding a dictionary *keyword=value* gathering information having no interactions with each other. This approach could be typically serialized in VOTable using *INFO* tag. 
 - An advanced approach consists in a rich serialization that allows information to interact. Typically a resource (ie: Entity in Provenance) can be attached to an agent (a Person or an institute).
@@ -53,7 +52,7 @@ The following concept can be repeated and could follow a controlled vocabulary.
 - Editor: name or URL
 - Journal: name or URL
 - Organization: name or URL
-
+- publication date
 
 - Name of the datacenter that provides the result
 - Resource Identifier: ivoid of resource(s) hosted by the service which returns the result
@@ -61,22 +60,6 @@ The following concept can be repeated and could follow a controlled vocabulary.
 - Remote resource identifier: a remote ressource which was used to build the result
 - Remote resource citation: a remote ressource which was used to build the result
 
-
-=======
-- "Give me a bibliography of everything I've used in the workflow" (M.Demleitner)
-
-
-## Metadata expected
-Metadata that can enrich a VOTable output:
-
-- Agents: author(s) / Institue / Space agency / Editor / Journal
-- Origin reference: article ref., etc.
-- Provider, Datacenter, Creator
-- Date(s)
-- Identifier: DOI, bibcode...
-- Access protocol
-- Licences
->>>>>>> c65476f134f8a131623e934e93045d5ba4652a88
 - Curation level
 - Licence: free text
 - Access protocol: eg.TAP query, SCS, ...
