@@ -45,7 +45,7 @@ This approach requires an advanced VOTable serialization, a remote Provenance se
 
 In a first time, we will limit the investigation to the DCP scope by listing the relevant information from either approach.
 
-### Basic metadata:
+### Basic metadata
 The following concept can be repeated and could follow a controlled vocabulary.
 
 #### Involved agents 
