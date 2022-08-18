@@ -35,7 +35,7 @@ depends of the Data Center which can add associated data, enrich
 meta-data (eg: add filter for magnitude) or make a sub-selection of
 columns.
 - Give me a bibliography of everything I've used in the workflow" (M.Demleitner)
-- <span class='color:red'>What else ? ....</span>
+- <span style='color:red'>**What else ? ....**</span>
 
 ## Metadata expected
 Tracing Data origin can be complex. It depends on the granularity expected.
@@ -48,18 +48,21 @@ In a first time, we will limit the investigation to the DCP scope by listing the
 ### Basic metadata:
 The following concept can be repeated and could follow a controlled vocabulary.
 
+#### Involved agents 
 - Author: name or orcid
 - Editor: name or URL
 - Journal: name or URL
 - Organization: name or URL
-- publication date
 
-- Name of the datacenter that provides the result
+#### Involved resources
+- Datacenter that provides the result: name or URL
 - Resource Identifier: ivoid of resource(s) hosted by the service which returns the result
 - Resource citation: DOI, bibcode of resource(s) hosted by the service which returns the result
 - Remote resource identifier: a remote ressource which was used to build the result
 - Remote resource citation: a remote ressource which was used to build the result
 
+#### Curation information
+- publication date
 - Curation level
 - Licence: free text
 - Access protocol: eg.TAP query, SCS, ...
