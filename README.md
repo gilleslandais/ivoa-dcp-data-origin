@@ -15,12 +15,13 @@ The basics meta-data should contain the data origin (space agency or
 authors, article references), the data center providing the resource, the date
 of publication ...
 - To trace data origin: query, resources used to compute the result...
+(for instance, xmatch 2 tables)
 - To homogenize the Origin-metadata information in VO output.<br/>
 *Example: Query the Gaia catalogue using VO services (for instance
 with topcat or any other VO-software). The registry lists Data Center
 (eg: Gavo, VizieR, ESA) which provides Gaia tables using TAP. The
-results returns VOTable having information in the header. However,
-the information depends of the implementation.*
+VOTable results contain information (in tags INFO) but the information depends 
+of the datacenters implementation. *
 - Relevant meta-data for final users to **cite** resources
 - Fill the AAS citation template (G.Muench).<br/>
 *Example : "we searched optical astrometric data of these sources from
