@@ -10,26 +10,24 @@ improve the understanding of the resultsets and enabling its reuse and its
 ## Use cases
 
 
-- To get basic provenance information in VO output(authors, dates, article, DOI,...)<br/>
-The basics meta-data should contain the data origin (space agency or
+- To provide basic provenance information in VO output(authors, dates, article, DOI,...)<br/>
+The basics metadata should contain the data origin (space agency or
 authors, article references), the data center providing the resource, the date
 of publication ...
 - To trace data origin: query, resources used to compute the result...
 (for instance, xmatch 2 tables)
-- To homogenize the Origin-metadata information in VO output.<br/>
-*Example: Query the Gaia catalogue using VO services (for instance
-with topcat or any other VO-software). The registry lists Data Center
-(eg: Gavo, VizieR, ESA) which provides Gaia tables using TAP. The
-VOTable results contain information (in tags INFO) but the information depends 
-of the datacenters implementation. *
-- Relevant meta-data for final users to **cite** resources
+- To homogenize the Origin metadata in VO output.<br/>
+The Richness and quality of Origin information provided in VOTable depends of the data center implementation.<br/>
+*Example: the same TAP query on Gaia catalogue executed by different services (hosted by datacenter like ESA, CDS, Gavo, etc.)
+provides more or less information on the origin of data (often serialized with the "INFO" tag and a name convention specific to each).*
+- Relevant metadata for final users to **cite** resources
 - Fill the AAS citation template (G.Muench).<br/>
 *Example : "we searched optical astrometric data of these sources from
 the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia
 Collaboration et al. 2021) via the Gaia archive (Gaia Collaboration
 2020)."*
-- Relevant meta-data for final users to understand data origin.<br/>
-Table provided by a Data Center can be a copy of an existing resource.
+- Relevant metadata for final users to understand data origin.<br/>
+Table provided by a Datacenter can be a copy of an existing resource.
 For instance, a table published in a journal or by a Space Agency is
 also hosted in a Data Center like CDS, GAVO, etc. The data curation
 depends of the Data Center which can add associated data, enrich
@@ -40,25 +38,25 @@ columns.
 
 ## Metadata expected
 Tracing Data origin can be complex. It depends on the granularity expected.
-- A basic approach consists in adding a dictionary *keyword=value* gathering information having no interactions with each other. This approach could be typically serialized in VOTable using *INFO* tag. 
-- An advanced approach consists in a rich serialization that allows information to interact. Typically a resource (ie: Entity in Provenance) can be attached to an agent (a Person or an institute).
+- A basic approach consists to add information using key=value pairs. Each interaction is independent with no interaction with each other. This approach could be generally serialized in VOTable using the INFO tag.
+- An advanced approach consists in a rich serialization that allows information to interact. Typically a resource can be attached to an agent (a Person or an institute).
 This approach requires an advanced VOTable serialization, a remote Provenance service or a TAP schema evolution.
 
-In a first time, we will limit the investigation to the DCP scope by listing the relevant information from either approach.
+As a prelimiary work, We will limit the investigation to the DCP scope by listing the relevant information from either approach.
 
 ### Basic metadata
-The following concept can be repeated and could follow a controlled vocabulary.
+The following metadata can be repeated and could follow a controlled vocabulary.
 
 #### Involved agents 
 - Author: name or orcid
 - Editor: name or URL
 - Journal: name or URL
 - Organization: name or URL
+- Datacenter that provides the result: name or URL
 
 #### Involved resources
-- Datacenter that provides the result: name or URL
-- Resource Identifier: ivoid of resource(s) hosted by the service which returns the result
-- Resource citation: DOI, bibcode of resource(s) hosted by the service which returns the result
+- Resource Identifier: ivoid of resource(s) hosted by the service which provides the result
+- Resource citation: DOI, bibcode of resource(s) hosted by the datacenter which returns the result
 - Remote resource identifier: a remote ressource which was used to build the result
 - Remote resource citation: a remote ressource which was used to build the result
 
