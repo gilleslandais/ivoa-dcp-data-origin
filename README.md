@@ -20,7 +20,7 @@ improve the understanding of the resultsets and enabling its reuse and its
   The researcher completes his understanding with Data Origin information easily accesible from the VOtable, and this, regardless of the service which generated the result. For instance, a URL that links an article.
   [The information could contain the Author, the year of publication, related resources like an article or the original data URL]
  
-When data provided by the service is derived from external resources, or if the data were performed with an additional curation, the nature and the links to the external resources are available.
+  When data provided by the service is derived from external resources, or if the data were performed with an additional curation, the nature and the links to the external resources are available.
 
   For instance, a table published in a journal or by a Space Agency is
   also hosted in a Data Center like CDS, GAVO, etc. The data curation
@@ -49,11 +49,12 @@ When data provided by the service is derived from external resources, or if the 
   generate BibTeX for whatever they specify]
 
   The information allows the researcher to fill the template citation asked by journals.
-*Example (American Astronomical Society template): the same TAP query on Gaia catalogue executed by different services (hosted by datacenter like ESA, CDS, Gavo, etc.)*
+  
+  *Example (American Astronomical Society template): the same TAP query on Gaia catalogue executed by different services (hosted by datacenter like ESA, CDS, Gavo, etc.)*
 
 
 
-- <span style='color:red'>**What else ? ....**</span>
+- **What else ? ....**
 
 ## Metadata expected
 Tracing Data origin can be complex. It depends on the granularity expected.
