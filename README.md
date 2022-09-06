@@ -9,31 +9,50 @@ improve the understanding of the resultsets and enabling its reuse and its
 
 ## Use cases
 
+* (Data Origin information)
+  A researcher has data in a VOTable that shows an odd feature.  They
+  would now like to talk to the creator of the data to help figure
+  out whether that feature is physics or an artefact. [Requirement:
+  contact information to producers present; but then let's not make
+  that a MUST: This can be GDPR-relevant data, and it must be
+  possible to leave it out if it is]
 
-- To provide basic provenance information in VO output(authors, dates, article, DOI,...)<br/>
-The basics metadata should contain the data origin (space agency or
-authors, article references), the data center providing the resource, the date
-of publication ...
-- To trace data origin: query, resources used to compute the result...
-(for instance, xmatch 2 tables)
-- To homogenize the Origin metadata in VO output.<br/>
-The Richness and quality of Origin information provided in VOTable depends of the data center implementation.<br/>
-*Example: the same TAP query on Gaia catalogue executed by different services (hosted by datacenter like ESA, CDS, Gavo, etc.)
-provides more or less information on the origin of data (often serialized with the "INFO" tag and a name convention specific to each).*
-- Relevant metadata for final users to **cite** resources
-- Fill the AAS citation template (G.Muench).<br/>
-*Example : "we searched optical astrometric data of these sources from
-the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia
-Collaboration et al. 2021) via the Gaia archive (Gaia Collaboration
-2020)."*
-- Relevant metadata for final users to understand data origin.<br/>
-Table provided by a Datacenter can be a copy of an existing resource.
-For instance, a table published in a journal or by a Space Agency is
-also hosted in a Data Center like CDS, GAVO, etc. The data curation
-depends of the Data Center which can add associated data, enrich
-meta-data (eg: add filter for magnitude) or make a sub-selection of
-columns.
-- Give me a bibliography of everything I've used in the workflow" (M.Demleitner)
+  The researcher completes his understanding with Data Origin information easily accesible from the VOtable, and this, regardless of the service which generated the result. For instance, a URL that links an article.
+  [The information could contain the Author, the year of publication, related resources like an article or the original data URL]
+ 
+When data provided by the service is derived from external resources, or if the data were performed with an additional curation, the nature and the links to the external resources are available.
+
+  For instance, a table published in a journal or by a Space Agency is
+  also hosted in a Data Center like CDS, GAVO, etc. The data curation
+  depends of the Data Center which can add associated data, enrich
+  meta-data (eg: add filter for magnitude) or make a sub-selection of
+  columns.
+  [an advanced serialisation could be based on DOI vocabulary "isVariantFormiOf", "IsDerivedFrom", ...]
+
+
+* (Reproducibility)
+  A researcher revisits work they did six months earlier in an ad-hoc
+  fashion and would now like to reproduce it in a more structured
+  fashion.  Do do that, they need to know, say, which queries against
+  which services, or perhaps which programs, produced the files.
+  [Requirement: have the request parameters and a service
+  identification (access url? ivoid?) in the data origin]
+
+* (Citation)
+  While preparing a publication, a researcher would like to properly
+  cite the software and data that went into their results.  They now
+  run a program to extract that information from the digital artefacts
+  going into the publication -- perhaps even in separate parts of
+  citations and acknowledgements.  [Requirement: The data origin must
+  indicate requests for citation and/or acknowledgement in a
+  machine-readable way, preferably in a way that machines can
+  generate BibTeX for whatever they specify]
+
+  The information allows the researcher to fill the template citation asked by journals.
+*Example (American Astronomical Society template): the same TAP query on Gaia catalogue executed by different services (hosted by datacenter like ESA, CDS, Gavo, etc.)*
+
+
+
 - <span style='color:red'>**What else ? ....**</span>
 
 ## Metadata expected
@@ -48,11 +67,12 @@ As a prelimiary work, We will limit the investigation to the DCP scope by listin
 The following metadata can be repeated and could follow a controlled vocabulary.
 
 #### Involved agents 
-- Author: name or orcid
+- Author: name or ORCID
 - Editor: name or URL
 - Journal: name or URL
 - Organization: name or URL
 - Datacenter that provides the result: name or URL
+- Contact: email
 
 #### Involved resources
 - Resource Identifier: ivoid of resource(s) hosted by the service which provides the result
