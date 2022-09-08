@@ -50,8 +50,12 @@ improve the understanding of the resultsets and enabling its reuse and its
 
   The information allows the researcher to fill the template citation asked by journals.
   
-  *Example (American Astronomical Society template): the same TAP query on Gaia catalogue executed by different services (hosted by datacenter like ESA, CDS, Gavo, etc.)*
+  *Example (American Astronomical Society template):
 
+"we searched optical astrometric data of these sources from
+the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia
+Collaboration et al. 2021) via the Gaia archive (Gaia Collaboration
+2020)."*
 
 
 - **What else ? ....**
