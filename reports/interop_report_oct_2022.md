@@ -25,7 +25,7 @@ eg:
 - VizieR provides a subset of SDSS tables
 - HiPs contains metadata that includes the provenance of the previous HiPS nodes (it is include in the Hipsgen tool)
 
-We underlined the differences existing for the same dataset when in multiple data centers. The data centers can make subset and enrich data !
+We underlined the differences existing for the same dataset in multiple data centers. The data centers can make subset and can enrich data !
 The Data-Center provenance becomes an important information for citation. 
 
 ## Licences
@@ -35,29 +35,29 @@ Licences information is required for end-users. The provided license format shou
 Existing software can already detect if a configuration can be used according to licenses. 
 Then, it is recommended to add URI licenses (eg: http://creativecommons.org/licenses/by-sa/2.0/legalcode) - (ndlr: Are there a standard way to specify licenses? DOI? URL?)
 
-*Multiple lisences* are clearly to avoid! In the worst case, they could be incompatible with unusable consequences.
+**Multiple lisences** are clearly to avoid! In the worst case, they could be incompatible with unusable consequences.
 The use case of dataset resulting from compilation having 2 licences is clearly to avoid! The capability of multiple licenses has been deprecated in the registry.
 
 When mutliple licenses are needed, they often point 2 distincts resources (eg: HiPS property file): 
 for instance a license on the data + a license on the service. The best approach consists to separate the 2 resources: each having his own lisence.
 
-*Copyright is accepted by FAIR principle.*
-But copyright is only a link to the data producer. The producer is the contact for any users who would like to use data.
+**Copyright is accepted by FAIR principle.**
+But copyright is only a link to the data producer. It gives the contact point fo any users who would like to use data.
 Copyright is more simple to implement for data-center that provides a copy of original resource, but its use is not well integrated in an interoperable workflow.
 
 
 ## VO citation
 is it possible to cite a VO Resource? 
 
-The question interest AAS: citin VO resources goes in the direction of reproducibility (encouraged by editors) . Then, to find a method could be good!
+The question interests AAS: to cite VO resources goes in the direction of reproducibility (encouraged by editors) . Then, to find a method could be good!
 
 ivoid is not citable because there are no guaranty of sustainability.
-ADS made non convincing VO harvesting tests in the past. But the question stays open and depends of the current registry quality ?
+ADS made VO harvesting in the past with a result not convincing! But the question stays open and depends of the current registry quality ?
 
 The amounts of data is also to take into account. Dataset indexation in ADS is submitted to requirements: it needs METADATA, a clear ownership and DOI is preferable.
-ADS philosophy is to provide link to resource having a potential impact - to make an automated choice in a VO registry harvesting is clearly not feasible today.
+ADS philosophy consists to provide link to resource having a potential impact - to make an automated choice in a VO registry harvesting is clearly not feasible today.
 
-ADS underlines also th bibcode limits (tech limitation issues of 19 char) and encourage DOI usage!
+ADS underlines also the bibcode limits (tech limitation issues of 19 char) and encourages DOI !
 DOI exists in registry : is DOI harvesting in registry relevant ? We noted that DOI can be the resource itself or an other linked resource (article, service...)
 
 
@@ -65,7 +65,7 @@ For dataset not selected or having no DOI; can we propose acknowledgment ?
 Could we propose a template (may be filled in registry), based on the AAS template ?  Question stays open? and is it feasible?
 
 
-ADS proposes to divide the question to use cases and to check the feasbility.
+We proposed to divide the question to use cases and to check the feasability.
 1) find acknowledgment 
 2) find citing
 3) reproducibility
