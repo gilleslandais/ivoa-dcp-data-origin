@@ -6,7 +6,7 @@
 
 presentation of the metadata origin, use cases, plan
 
-## Topics discussed
+## Topics discussed
 - linking resources in vo registry
 - licences
 - citation and the DOI role
@@ -16,7 +16,7 @@ presentation of the metadata origin, use cases, plan
 - AAS: how to encourage user to give more reproducibility ? For dataset provided by multiple Data-Center, the origin and the Data Center have to be cited because each Data-Center use his own architecture and can enrich the data.
 
 
-## Linking resources
+## Linking resources
 the registry as well as the DOI enables to make link between resources (relatedIdentifier can be enrich with a controlled semantic to specify the nature of the relation).
 This capability is not very used today and when it exists, its coverage is limitted and difficult to exploit.
 For instance VizieR provides links to other VizieR resources and sometimes URL to agencies who produced the data.
@@ -77,7 +77,7 @@ Question: Is it possible to add a bibtex section with ivoid reference?
 for instance VizieR provides in the DOI metadata an alternate identifier to link the VO resource (using ivoid identifier)
 
 
-## Todo
+## Todo
 - make a list of metadata
 - propose output on a concret basis: VOTable, registry, python service or API
 
