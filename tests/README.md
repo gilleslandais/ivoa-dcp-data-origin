@@ -12,9 +12,12 @@ the current implementation exploits VOTable and registry metadata. It is in deve
 The code enables to get Data-origin information and provides an api to cite the resource. Citing requires DOI.
 The code returns the ADS bibtex (completed with ivoid value) or makes a bibtex from meta-data in registry.
 
-Note that ADS bibtex is better and more clean!
+When exists, the ADS bibtex is preferred to the registry for its curation and its clean integration into journals.
 
 **Note:** the mivot and ads library are not public , but just here as example -
+
+adsbib library uses the ADS API and the ADS token authorisation. You need to create a ".ads" file in the repository which contains the ADS token.
+see ADS: https://ui.adsabs.harvard.edu/help/api/
 
 ```
 $ python3 dataorigin.py -h
