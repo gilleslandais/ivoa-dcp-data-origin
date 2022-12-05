@@ -72,6 +72,28 @@ This approach requires an advanced VOTable serialization. mivot is a response th
 like <a href='https://www.ivoa.net/documents/DatasetDM/20170928/index.html'>DatasetDM</a> or
 <a href='https://www.ivoa.net/documents/ProvenanceDM/'> Provenance</a> (or <a href='https://wiki.ivoa.net/twiki/pub/IVOA/InterOpOct2022DM/2022-10-18_One-step_provenance_IVOA.pdf'>last-step-provenance</a>)
 
+The following metadata can be repeated and could follow a controlled vocabulary.
+
+- Author: name or ORCID
+- Editor: name or URL
+- Journal: name or URL
+- Organization: name or URL
+- Datacenter that provides the result: name or URL
+- Contact: email
+
+- Resource Identifier: ivoid of resource(s) hosted by the service which provides the result
+- Resource citation: DOI, bibcode of resource(s) hosted by the datacenter which returns the result
+- Remote resource identifier: a remote ressource which was used to build the result
+- Remote resource citation: a remote ressource which was used to build the result
+
+- publication date
+- Curation level
+- Licence
+- Access protocol: eg.TAP query, SCS, ...
+- Query: eg: ADQL
+
+- Comment: Any additional information in text plain that complete the result
+- ...?
 
 ## Proposal
 
