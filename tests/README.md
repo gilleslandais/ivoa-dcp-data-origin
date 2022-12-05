@@ -1,16 +1,16 @@
 # VOTable Serialisation example
 
-2 example of Data-origin serialication.
+2 examples of Data-origin serialication.
 
-- simple case based on &lt;INOF&gt; involving a unique table (eg: SCS)
-- case based on Data-models (DatasetDM) for result involving 2 tables
+- simple case based on &lt;INFO&gt; for VOTable having a unique table (eg: SCS)
+- case based on Data-model (DatasetDM) for VOTable having 2 tables
 
 
 ## Python implementation 
 
-the current implementation exploit VOTAble and registry metadata. It is in a devleoppement phase.
-The code enables to search information and propose an api to cite a resource. Citing required a DOI, 
-The code returns the ADS bibtex (completed with iovoid value) or create a bibtex from meta-data in registry.
+the current implementation exploits VOTable and registry metadata. It is in developement phase.
+The code enables to get Data-origin information and provides an api to cite the resource. Citing requires DOI.
+The code returns the ADS bibtex (completed with ivoid value) or makes a bibtex from meta-data in registry.
 
 Note that ADS bibtex is better and more clean!
 
