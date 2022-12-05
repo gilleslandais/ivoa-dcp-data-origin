@@ -12,10 +12,11 @@ improve the understanding of the resultsets and enabling its reuse and its
 - (Data Origin information)
   A researcher has data in a VOTable that shows an odd feature.  They
   would now like to talk to the creator of the data to help figure
-  out whether that feature is physics or an artefact. [Requirement:
-  contact information to producers present; but then let's not make
-  that a MUST: This can be GDPR-relevant data, and it must be
-  possible to leave it out if it is]
+  out whether that feature is physics or an artefact. 
+
+  Requirement:  contact information to producers present; but then let's 
+  not make that a MUST: This can be GDPR-relevant data, and it must be possible 
+  to leave it out if it is
 
   The researcher completes his understanding with Data Origin information easily accesible from the VOtable, and this, regardless of the service which generated the result. For instance, a URL that links an article.
   [The information could contain the Author, the year of publication, related resources like an article or the original data URL]
@@ -67,49 +68,10 @@ The VOTable resulting of a session contains homogenized metadata that can be mer
 Tracing Data origin can be complex. It depends on the granularity expected.
 - A basic approach consists to add information using key=value pairs. Each interaction is independent with no interaction with each other. This approach could be generally serialized in VOTable using the INFO tag.
 - An advanced approach consists in a rich serialization that allows information to interact. 
-This approach requires an advanced VOTable serialization. mivot is a repsonse that enables to map data with data-models like DatasetDM or Provenance (or last-step-provenance)
+This approach requires an advanced VOTable serialization. mivot is a response that enables to map data with data-models 
+like <a href='https://www.ivoa.net/documents/DatasetDM/20170928/index.html'>DatasetDM</a> or
+<a href='https://www.ivoa.net/documents/ProvenanceDM/'> Provenance</a> (or <a href='https://wiki.ivoa.net/twiki/pub/IVOA/InterOpOct2022DM/2022-10-18_One-step_provenance_IVOA.pdf'>last-step-provenance</a>)
 
-
-### Basic metadata
-The following metadata can be repeated and could follow a controlled vocabulary.
-
-#### Involved agents 
-- Author: name or ORCID
-- Editor: name or URL
-- Journal: name or URL
-- Organization: name or URL
-- Datacenter that provides the result: name or URL
-- Contact: email
-
-#### Involved resources
-- Resource Identifier: ivoid of resource(s) hosted by the service which provides the result
-- Resource citation: DOI, bibcode of resource(s) hosted by the datacenter which returns the result
-- Remote resource identifier: a remote ressource which was used to build the result
-- Remote resource citation: a remote ressource which was used to build the result
-
-#### Curation information
-- publication date
-- Curation level
-- Licence
-- Access protocol: eg.TAP query, SCS, ...
-- Query: eg: ADQL
-
-- Comment: Any additional information in text plain that complete the result
-- ...?
-
-
-### Advanced metadata
-- Explain the link existing between a resource provided by the datacenter and the original repository <br/>
-(eg: Gaia table provided by CDS as a variant form of the original ESA table)
-- Link Agents (author, editor, organization, ...) with the resources implied to build the result
-- Nature of the information <br/>
-explain transformation operated by datacenter. 
-for instance, "this column has been added by the datacenter", "this resource is a subset of the original data" ...
-- specialization of the information<br/>
-For instance :
-    - an *article* is specialized with attributes: PID, journal name, date, link to agent(s)..
-    - a *resource* : **type** , url, PID, comment, link to agent(s)
-- ...
 
 ## Proposal
 
@@ -128,7 +90,6 @@ For queries on evolving dataset, the version or the date must complete the infor
 |QUERY-DATE| Query execution date | |
 |DATA-CENTER-CONTACT| email or URL contact | |
 |LANDING-PAGE| Dataset landing page | |
-(M=Mandatory)
 
 Serialisation example: &lt;info&gt; tag makes the jobs. see <a href='tests/J_AJ_161_36_table8.xml'>SCS example</a>
 
@@ -136,7 +97,7 @@ Serialisation example: &lt;info&gt; tag makes the jobs. see <a href='tests/J_AJ_
 Dataset-origin completes the "Query information" - 
 
 
-Simple case providing a uniq resource int the output (eg: SCS)
+Simple case providing a **unique table** in the output (eg: SCS)
 
 |meta-data| Description| Mandatory |
 |---      |:-:  |:-: |
@@ -159,7 +120,8 @@ eg: bibcode:...
 Serialisation example:  &lt;info&gt; tag makes the jobs. see <a href='tests/J_AJ_161_36_table8.xml'>SCS example</a>
 
 
-Complex output involving several datasets (eg: TAP query, ObsCore result)
+Complex output involving **several tables** (eg: TAP query, ObsCore result)
+
 Dataset-origin depends on each table used for the output. Datamodels like Last-step -Provenance or DatasetDM allows to gather the metadata.
 
 DatasetDM Example:
@@ -184,6 +146,7 @@ Serialisation example:  DatasetDM serialisation. see <a href='tests/tap.xml'>TAP
 
 
 
+# About 
 This document describes simple means to declare basic provenance
 information in the [Virtual Observatory](https://ivoa.net).
 
