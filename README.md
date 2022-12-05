@@ -166,6 +166,8 @@ DatasetDM Example:
 
 Serialisation example:  DatasetDM serialisation. see <a href='tests/tap.xml'>TAP example</a>
 
+(see also: <a href='https://wiki.ivoa.net/twiki/pub/IVOA/InterOpOct2022DM/IVOA-DMTAP-VizieR.pdf'>datasetDM in TAP (ivoa-talk)</a>
+
 
 
 # About 
