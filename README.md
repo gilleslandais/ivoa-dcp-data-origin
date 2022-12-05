@@ -51,9 +51,9 @@ improve the understanding of the resultsets and enabling its reuse and its
 
   The information allows the researcher to fill the template citation asked by journals.
   
-  *Example (American Astronomical Society template):
+  **Example** (American Astronomical Society template):
 
-"we searched optical astrometric data of these sources from
+*"we searched optical astrometric data of these sources from
 the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia
 Collaboration et al. 2021) via the Gaia archive (Gaia Collaboration
 2020)."*
@@ -73,7 +73,7 @@ like <a href='https://www.ivoa.net/documents/DatasetDM/20170928/index.html'>Data
 <a href='https://www.ivoa.net/documents/ProvenanceDM/'> Provenance</a> (or <a href='https://wiki.ivoa.net/twiki/pub/IVOA/InterOpOct2022DM/2022-10-18_One-step_provenance_IVOA.pdf'>last-step-provenance</a>)
 
 
-## Proposal
+## Proposal
 
 ### Query information
 Query information enables to link the registry and to reproduce the query. 
@@ -97,7 +97,7 @@ Serialisation example: &lt;info&gt; tag makes the jobs. see <a href='tests/J_AJ_
 Dataset-origin completes the "Query information" - 
 
 
-Simple case providing a **unique table** in the output (eg: SCS)
+- Simple case providing a **unique table** in the output (eg: SCS)
 
 |meta-data| Description| Mandatory |
 |---      |:-:  |:-: |
@@ -112,15 +112,15 @@ Simple case providing a **unique table** in the output (eg: SCS)
 |Editor| editor name| |
 |Publication-date| Date of the original publication | |
 
-**Publication-id**: can be prefixed with the identifier type:
-eg: bibcode:...
-    doi:...
+*Publication-id*: can be prefixed with the identifier type:
+eg: bibcode:...,
+    doi:...,
     ror:...
 
 Serialisation example:  &lt;info&gt; tag makes the jobs. see <a href='tests/J_AJ_161_36_table8.xml'>SCS example</a>
 
 
-Complex output involving **several tables** (eg: TAP query, ObsCore result)
+- Complex output involving **several tables** (eg: TAP query, ObsCore result)
 
 Dataset-origin depends on each table used for the output. Datamodels like Last-step -Provenance or DatasetDM allows to gather the metadata.
 
