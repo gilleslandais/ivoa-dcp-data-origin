@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.ivoa.net/xml/VOTable/v1.1"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.1 http://www.ivoa.net/xml/VOTable/v1.1">
+ <DESCRIPTION>
+   VizieR Astronomical Server vizier.cds.unistra.fr
+    Date: 2022-10-30T11:00:36 [V7.294]
+   Explanations and Statistics of UCDs:			See LINK below
+   In case of problem, please report to:	cds-question@unistra.fr
+   In this version, NULL integer columns are written as an empty string
+   &lt;TD&gt;&lt;/TD&gt;, explicitely possible from VOTable-1.3
+ </DESCRIPTION>
+
+<DEFINITIONS>
+  <COOSYS ID="J2000" system="eq_FK5" equinox="J2000"/>
+</DEFINITIONS>
+
+<INFO ID="VERSION" name="version" value="7.294"/>
+
+<!-- metadata focused on publisher autput-->
+<INFO ID="IVOID" value="ivo://cds.vizier/j/aj/161/36"/>
+<INFO ID="DATA-CENTER" value="ivo://cds.vizier"/><!-- use DOI ? -->
+<INFO ID="ACCESS-PROTOCOL" value="Simple Cone Search 1.03"/><!-- URL to doc ? -->
+<INFO ID="QUERY-DATE" value="2022-10-30T12:08:00"/>
+<INFO ID="QUERY" value="https://vizier.cds.unistra.fr/viz-bin/conesearch/J/AJ/161/36/table8?RA=285.367%26DEC=39.28%26SR=1"/>
+<INFO ID="DATA-CENTER-CONTACT" value="cds-question@unistra.fr"/>
+<INFO ID="LANDING-PAGE" value="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/AJ/161/36"/>
+
+<!-- Extra information from Data Oririgin (basic info) -->
+<INFO ID="Publication-id" value="doi:10.26093/cds/vizier.51610036"/>
+<INFO ID="Curation-level" value="Research"/>
+<INFO ID="Resource-version" value="2022-10-07T07:50:31Z"/>
+<INFO ID="Rights" value="https://cds.unistra.fr/vizier-org/licences_vizier.html"/>
+
+<INFO ID="Author" value="Bryson S."/><!-- ORCID ? -->
+<INFO ID="Publication-ref" value="2021AJ....161...36B"/><!-- DOI ? -->
+<INFO ID="Editor" value="Astronomical Journal"/>
+<INFO ID="Publication-date" value="2021-03-16T13:00:26Z"/>
+
+
+<!--
+Execution Reports
+ -->
+<INFO ID="Target" name="-c" value="285.367000+39.280000,rd=1.">
+Constraint SR=1</INFO>
+
+<RESOURCE ID="yCat_51610036" name="J/AJ/161/36">
+  <DESCRIPTION>117 exoplanets in habitable zone with Kepler DR25 (Bryson+, 2021)</DESCRIPTION>
+  <COOSYS ID="J2000_2000.000" system="eq_FK5" equinox="J2000" epoch="2000.000"/>
+  <TABLE ID="J_AJ_161_36_table8" name="J/AJ/161/36/table8" ivo-id="ivo://cds.vizier/j/aj/161/36"><!-- ADD IVOID for astropy.table.Table.read() -->
+    <INFO ID="IVOID" value="ivo://cds.vizier/j/aj/161/36"/>
+    <DESCRIPTION>Planet candidate properties</DESCRIPTION>
+    <!-- Definitions of GROUPs and FIELDs -->
+    <FIELD name="_r" ucd="pos.angDistance" datatype="double" width="8" precision="6" unit="deg"><!-- ucd="POS_ANG_DIST_GENERAL" -->
+      <DESCRIPTION>Distance from center (285.36700+39.28000)[FK5/J2000], at Epoch=J2000.0</DESCRIPTION>
+    </FIELD>
+    <FIELD name="recno" ucd="meta.record" datatype="int" width="8"><!-- ucd="RECORD" -->
+      <DESCRIPTION>Record number assigned by the VizieR team. Should Not be used for identification.</DESCRIPTION>
+    </FIELD>
+    <FIELD name="KOI" ucd="ID_MAIN" datatype="char" arraysize="7"><!-- ucd="meta.id;meta.main" -->
+      <DESCRIPTION>Kepler Object Identifier</DESCRIPTION>
+    </FIELD>
+    <FIELD name="f_KOI" ucd="meta.code" datatype="char" arraysize="1"><!-- ucd="CODE_MISC" -->
+      <DESCRIPTION>[b] Flag on KOI (1)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Rad" ucd="phys.size.radius" datatype="float" width="5" precision="2" unit="Rgeo"><!-- ucd="PHYS_SIZE_RADIUS_GENERAL" -->
+      <DESCRIPTION>[0.79/5.02] Planetary radius</DESCRIPTION>
+    </FIELD>
+    <FIELD name="E_Rad" ucd="stat.error;stat.max" datatype="float" width="7" precision="2" unit="Rgeo"><!-- ucd="ERROR" -->
+      <DESCRIPTION>[0.03/5964.94] Upper uncertainty in Radius</DESCRIPTION>
+    </FIELD>
+    <FIELD name="e_Rad" ucd="stat.error" datatype="float" width="5" precision="2" unit="Rgeo"><!-- ucd="ERROR" -->
+      <DESCRIPTION>[0.04/2.05] Lower uncertainty in Radius</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Per" ucd="time.period" datatype="float" width="6" precision="2" unit="d"><!-- ucd="TIME_PERIOD" -->
+      <DESCRIPTION>[28.46/623.71] Orbital period</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Instel" ucd="phot.color.excess" datatype="float" width="5" precision="2"><!-- ucd="PHOT_COLOR_EXCESS" -->
+      <DESCRIPTION>[0.24/3.21] Instellation in Earth units</DESCRIPTION>
+    </FIELD>
+    <FIELD name="E_Instel" ucd="stat.error;stat.max" datatype="float" width="5" precision="2"><!-- ucd="ERROR" -->
+      <DESCRIPTION>[0.02/0.52] Upper uncertainty in Instel</DESCRIPTION>
+    </FIELD>
+    <FIELD name="e_Instel" ucd="stat.error" datatype="float" width="5" precision="2"><!-- ucd="ERROR" -->
+      <DESCRIPTION>[0.02/0.49] Lower uncertainty in Instel</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Teff" ucd="meta.id" datatype="short" width="4" unit="K"><!-- ucd="PHYS_TEMP_EFFEC" -->
+      <DESCRIPTION>[3926/6753] Host star effective temperature</DESCRIPTION>
+    </FIELD>
+    <FIELD name="E_Teff" ucd="stat.error;stat.max" datatype="short" width="3" unit="K"><!-- ucd="ERROR" -->
+      <DESCRIPTION>[43/272] Upper uncertainty in Teff</DESCRIPTION>
+    </FIELD>
+    <FIELD name="e_Teff" ucd="stat.error;phys.temperature.effective" datatype="short" width="3" unit="K"><!-- ucd="ERROR" -->
+      <DESCRIPTION>[45/320] Lower uncertainty in Teff</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Rel" ucd="meta.code.qual" datatype="float" width="5" precision="2"><!-- ucd="CODE_QUALITY" -->
+      <DESCRIPTION>[0.01/1] Reliability</DESCRIPTION>
+    </FIELD>
+    <FIELD name="IncProb" ucd="stat.fit.goodness" datatype="double" width="8" precision="5"><!-- ucd="STAT_PROBABILITY" -->
+      <DESCRIPTION>[0.00026/1] Inclusion probability</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Simbad" ucd="meta.ref.url" datatype="char" arraysize="6*"><!-- ucd="DATA_LINK" -->
+      <DESCRIPTION>Simbad column added by the CDS</DESCRIPTION>
+<!-- ask the {\bf\fg{FireBrick}Simbad} data-base about this object -->
+
+    </FIELD>
+    <FIELD name="_RA" ucd="POS_EQ_RA_MAIN" ref="J2000_2000.000" datatype="double" width="9" precision="5" unit="deg"><!-- ucd="pos.eq.ra;meta.main" -->
+      <DESCRIPTION>Position from SIMBAD (right ascension part)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="_DE" ucd="POS_EQ_DEC_MAIN" ref="J2000_2000.000" datatype="double" width="9" precision="5" unit="deg"><!-- ucd="pos.eq.dec;meta.main" -->
+      <DESCRIPTION>Position from SIMBAD (declination part)</DESCRIPTION>
+    </FIELD>
+<DATA><TABLEDATA>
+<TR><TD>0.000347</TD><TD>1</TD><TD>4742.01</TD><TD>b</TD><TD>1.35</TD><TD>0.08</TD><TD>0.08</TD><TD>112.30</TD><TD>1.01</TD><TD>0.08</TD><TD>0.07</TD><TD>4602</TD><TD>84</TD><TD>76</TD><TD>0.91</TD><TD>1.00000</TD><TD>Simbad</TD><TD>285.36656</TD><TD>+39.28006</TD></TR>
+<TR><TD>0.776606</TD><TD>10</TD><TD>8242.01</TD><TD>b</TD><TD>1.48</TD><TD>0.10</TD><TD>0.21</TD><TD>331.55</TD><TD>0.89</TD><TD>0.07</TD><TD>0.07</TD><TD>5736</TD><TD>105</TD><TD>97</TD><TD>0.53</TD><TD>1.00000</TD><TD>Simbad</TD><TD>286.04396</TD><TD>+38.70877</TD></TR>
+<TR><TD>0.352560</TD><TD>20</TD><TD>8246.01</TD><TD>b</TD><TD>1.72</TD><TD>0.12</TD><TD>0.22</TD><TD>425.65</TD><TD>1.70</TD><TD>0.16</TD><TD>0.15</TD><TD>6091</TD><TD>125</TD><TD>123</TD><TD>0.36</TD><TD>0.99898</TD><TD>Simbad</TD><TD>285.60824</TD><TD>+39.57930</TD></TR>
+<TR><TD>0.562212</TD><TD>37</TD><TD>4084.01</TD><TD>b</TD><TD>2.32</TD><TD>0.16</TD><TD>0.09</TD><TD>214.88</TD><TD>1.14</TD><TD>0.10</TD><TD>0.09</TD><TD>5288</TD><TD>94</TD><TD>89</TD><TD>0.99</TD><TD>0.86571</TD><TD>Simbad</TD><TD>286.05244</TD><TD>+39.09604</TD></TR>
+<TR><TD>0.551218</TD><TD>56</TD><TD> 812.03</TD><TD></TD><TD>2.10</TD><TD>0.11</TD><TD>0.07</TD><TD>46.18</TD><TD>2.24</TD><TD>0.24</TD><TD>0.22</TD><TD>4293</TD><TD>82</TD><TD>90</TD><TD>1.00</TD><TD>0.43624</TD><TD>Simbad</TD><TD>286.07910</TD><TD>+39.27832</TD></TR>
+<TR><TD>0.972806</TD><TD>113</TD><TD> 401.02</TD><TD></TD><TD>4.17</TD><TD>0.27</TD><TD>0.53</TD><TD>160.02</TD><TD>2.13</TD><TD>0.16</TD><TD>0.15</TD><TD>5516</TD><TD>90</TD><TD>87</TD><TD>0.95</TD><TD>0.00057</TD><TD>Simbad</TD><TD>285.85371</TD><TD>+38.38411</TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>

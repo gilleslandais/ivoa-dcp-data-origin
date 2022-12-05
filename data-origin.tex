@@ -70,23 +70,46 @@ We propose to list the meta-data which responds to the need of Provenance and me
 \section{Use cases}
 
 \begin{itemize}
-	\item To get basic provenance information in VO output(author, pulication date, article, DOI,...) 
-        \item To trace data origin: query, resuources used to compute the result... 
-        \item To homogenize the Origin-metadata information in VO output.\\
-	Example: Query the Gaia catalogue using VO services (for instance with topcat or any other VO-software). The registry lists Data Center (eg: Gavo, VizieR, ESA) which provides Gaia  tables using TAP. The results returns VOTable having information in the header. However, the information depends of the implementation.\\
-	To get citation information require the user to query the providers web sites or to use ADS.
-	\item Relevant meta-data for final users to \textbf{cite} resources 
-        \item Fill the AAS citation template.\\
-         Example : "we searched optical astrometric data of these sources from the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia Collaboration et al. 2021) via the Gaia archive (Gaia Collaboration 2020)."
-	\item Relevant meta-data for final users to understand data origin.\\
-	Table provided by a Data Center can be a copy of an existing resource. For instance, a table published in a journal or by a Space Agency is also hosted in a Data Center like CDS, GAVO, etc.
-	The data curation depends of the Data Center which can add associated data, enrich meta-data (eg: add filter for magnitude) or make a sub-selection of columns.
-	\item Give me a bibliography of everything I've used in the workflow"
+	\item (Data Origin information) A researcher has data in a VOTable that shows an odd feature. They would now like to talk to the creator of the data to help figure out whether that feature is physics or an artefact. 
+	
+	Requirement: contact information to producers present; but then let's not make that a MUST: This can be GDPR-relevant data, and it must be possible to leave it out if it is
+	
+	The researcher completes his understanding with Data Origin information easily accesible from the VOtable, and this, regardless of the service which generated the result. For instance, a URL that links an article. 
+	
+	The information could contain the Author, the year of publication, related resources like an article or the original data URL.
+	
+	When data provided by the service is derived from external resources, or if the data were performed with an additional curation, the nature and the links to the external resources are available.
+	
+	For instance, a table published in a journal or by a Space Agency is also hosted in a Data Center like CDS, GAVO, etc. The data curation depends of the Data Center which can add associated data, enrich meta-data (eg: add filter for magnitude) or make a sub-selection of columns. [an advanced serialisation could be based on DOI vocabulary "isVariantFormiOf", "IsDerivedFrom", ...]
+	
+	\item (Reproducibility) A researcher revisits work they did six months earlier in an ad-hoc fashion and would now like to reproduce it in a more structured fashion. Do do that, they need to know, say, which queries against which services, or perhaps which programs, produced the files. 
+	
+	Requirement: have the request parameters and a service identification (access url? ivoid?) in the data origin.
+	
+	\item (Citation) While preparing a publication, a researcher would like to properly cite the software and data that went into their results. They now run a program to extract that information from the digital artefacts going into the publication -- perhaps even in separate parts of citations and acknowledgements. 
+	
+	Requirement: The data origin must indicate requests for citation and/or acknowledgement in a machine-readable way, preferably in a way that machines can generate BibTeX for whatever they specify
+	
+	The information allows the researcher to fill the template citation asked by journals.
+	
+	Example (American Astronomical Society template):
+	
+	"we searched optical astrometric data of these sources from the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia Collaboration et al. 2021) via the Gaia archive (Gaia Collaboration 2020)."*
+	
+	\item (workflow) Give me a bibliography of everything I've used in the workflow"
+	The VOTable resulting of a session contains homogenized metadata that can be merged and compared.
+	
 \end{itemize}
 
 The basics meta-data should contain the data origin (space agency or authors, article references), the data center providing the resource, the date of publication ...
 
 \section{State of the art}
+VOTable and protocols doesn't provide any Data origin information.
+
+Most of the metadata are available int the IVOA registries.
+
+DataModels:  Provenance (Last-step-provenance), DatasetDM 
+
 
 \section{Expected Data Origin}
 

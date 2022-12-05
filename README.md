@@ -9,7 +9,7 @@ improve the understanding of the resultsets and enabling its reuse and its
 
 ## Use cases
 
-* (Data Origin information)
+- (Data Origin information)
   A researcher has data in a VOTable that shows an odd feature.  They
   would now like to talk to the creator of the data to help figure
   out whether that feature is physics or an artefact. [Requirement:
@@ -30,7 +30,7 @@ improve the understanding of the resultsets and enabling its reuse and its
   [an advanced serialisation could be based on DOI vocabulary "isVariantFormiOf", "IsDerivedFrom", ...]
 
 
-* (Reproducibility)
+- (Reproducibility)
   A researcher revisits work they did six months earlier in an ad-hoc
   fashion and would now like to reproduce it in a more structured
   fashion.  Do do that, they need to know, say, which queries against
@@ -38,7 +38,7 @@ improve the understanding of the resultsets and enabling its reuse and its
   [Requirement: have the request parameters and a service
   identification (access url? ivoid?) in the data origin]
 
-* (Citation)
+- (Citation)
   While preparing a publication, a researcher would like to properly
   cite the software and data that went into their results.  They now
   run a program to extract that information from the digital artefacts
@@ -57,16 +57,18 @@ the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia
 Collaboration et al. 2021) via the Gaia archive (Gaia Collaboration
 2020)."*
 
+- (Workflow) Give me a bibliography of everything I’ve used in the workflow" .
+
+The VOTable resulting of a session contains homogenized metadata that can be merged and compared.
 
 - **What else ? ....**
 
 ## Metadata expected
 Tracing Data origin can be complex. It depends on the granularity expected.
 - A basic approach consists to add information using key=value pairs. Each interaction is independent with no interaction with each other. This approach could be generally serialized in VOTable using the INFO tag.
-- An advanced approach consists in a rich serialization that allows information to interact. Typically a resource can be attached to an agent (a Person or an institute).
-This approach requires an advanced VOTable serialization, a remote Provenance service or a TAP schema evolution.
+- An advanced approach consists in a rich serialization that allows information to interact. 
+This approach requires an advanced VOTable serialization. mivot is a repsonse that enables to map data with data-models like DatasetDM or Provenance (or last-step-provenance)
 
-As a prelimiary work, We will limit the investigation to the DCP scope by listing the relevant information from either approach.
 
 ### Basic metadata
 The following metadata can be repeated and could follow a controlled vocabulary.
@@ -88,7 +90,7 @@ The following metadata can be repeated and could follow a controlled vocabulary.
 #### Curation information
 - publication date
 - Curation level
-- Licence: free text
+- Licence
 - Access protocol: eg.TAP query, SCS, ...
 - Query: eg: ADQL
 
@@ -108,6 +110,78 @@ For instance :
     - an *article* is specialized with attributes: PID, journal name, date, link to agent(s)..
     - a *resource* : **type** , url, PID, comment, link to agent(s)
 - ...
+
+## Proposal
+
+### Query information
+Query information enables to link the registry and to reproduce the query. 
+For queries on evolving dataset, the version or the date must complete the information.
+
+
+|meta-data| Description| Mandatory |
+|---      |:-:  |:-: |
+|IVOID    | ivoid identifier to link registry | yes |
+|DATA-CENTER| Data center that provides the VOTable | yes |
+|VERSION | Dataset version (or release date) | |
+|ACCESS-PROTOCOL| Protcol access with version | |
+|QUERY| Request url  | |
+|QUERY-DATE| Query execution date | |
+|DATA-CENTER-CONTACT| email or URL contact | |
+|LANDING-PAGE| Dataset landing page | |
+(M=Mandatory)
+
+Serialisation example: &lt;info&gt; tag makes the jobs. see <a href='tests/J_AJ_161_36_table8.xml'>SCS example</a>
+
+### Dataset Origin
+Dataset-origin completes the "Query information" - 
+
+
+Simple case providing a uniq resource int the output (eg: SCS)
+
+|meta-data| Description| Mandatory |
+|---      |:-:  |:-: |
+|Publication-id| Dataset identifier that can be used for citation | yes |
+|Curation-level| Controled vocabulary | |
+|Resource-version| Dataset version od last release | |
+|Rights| Licence URI | |
+|Rights-type| Licence type (eg: CC-by, CC-0, private, public) | |
+|Copyrights| Copyright text | |
+|Author| Dataset Author(s) or group | |
+|Publication-ref| Identifier of the original resource that can be an article or the origin Data Center| 
+|Editor| editor name| |
+|Publication-date| Date of the original publication | |
+
+**Publication-id**: can be prefixed with the identifier type:
+eg: bibcode:...
+    doi:...
+    ror:...
+
+Serialisation example:  &lt;info&gt; tag makes the jobs. see <a href='tests/J_AJ_161_36_table8.xml'>SCS example</a>
+
+
+Complex output involving several datasets (eg: TAP query, ObsCore result)
+Dataset-origin depends on each table used for the output. Datamodels like Last-step -Provenance or DatasetDM allows to gather the metadata.
+
+DatasetDM Example:
+
+|meta-data| Description| Mandatory |
+|---      |:-:  |:-: |
+|dataset:productType|||
+|dataset:productSubType| controled vocabulary||
+|dataset:DataID.datasetDID| dataset ivoid|yes|
+|dataset:DataID.title| dataset title||
+|dataset:DataID.creationType| type of resource ||
+|dataset:DataID.date| Publication date of original dataset/article||
+|dataset:Party.name| (first)Author | |
+|dataset:Curation.publisherDID| data-center identifier (ivoid)|yes|
+|dataset:Curation.rights| rights text| |
+|dataset:Curation.releaseDate| Data-center publication date|yes|
+|party.Organisation.email|Data-center contact||
+|dataset:Curation.doi| Dataset DOI| |
+|dataset:Curation.bibcode| Dataset bibcode||
+
+Serialisation example:  DatasetDM serialisation. see <a href='tests/tap.xml'>TAP example</a>
+
 
 
 This document describes simple means to declare basic provenance
