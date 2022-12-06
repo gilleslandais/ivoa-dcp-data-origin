@@ -104,11 +104,36 @@ We propose to list the meta-data which responds to the need of Provenance and me
 The basics meta-data should contain the data origin (space agency or authors, article references), the data center providing the resource, the date of publication ...
 
 \section{State of the art}
-VOTable and protocols doesn't provide any Data origin information.
 
-Most of the metadata are available int the IVOA registries.
+VOTable as the most of IVOA protocols don't provide any Data origin information. For instance the TAP protocols provides tables and columns description in order togenerate and query tables. The TAP metadata contains information like unit, type and text information. Authors, ublication date or identifiers are not included in the TAP description.
 
-DataModels:  Provenance (Last-step-provenance), DatasetDM 
+The Hips server is a more recent protocol which includes for each dataset (a HiPS) a list of standardized metadata. Amon the metadata figures authors, publication yearsn, Data center idrntifier,or licences.
+
+
+\subsection{Data-origin in IVOA registry}
+The registry has Data origin like authorts, publication date, link to other resources and alternate identifier. Among the identifier, the DOI is accepted as alternate-identifier with a "doi" prefix (eg: $<altIdentifier>doi:10.26093/cds/vizier.1355</altIdentifier>$).
+
+The VO registries offer services to any data-center, data-producers or service implementer to index a resource to be accessible in the Virtual Observatory framework. 
+The IVOA registry is an open service without any moderators. The data are regularly harvested by registry-of registry which check the service/resource availability. However , the ivoa don't guaranty te resources sustainability.
+
+The IVOID used to identify any resource in the registry is unique but it is not a identifier on sustatinable resource. 
+A reason why the ivoid has not been considered yet to be citable in a scientific article. 
+
+However, the registry metadata schema is based on schollix and datacite schemas. Then a curation registration could enable to provide the bibtex information to cite the data.
+
+\subsection{Data Origin serialisation}
+Today Proveance or DatasetDM provide models that can be used to serialize DataOrigin.
+
+The Prorvenance DataModel (ProvDM) is based on Entities, Agents and Activities ofr the W3C Provenance description. The models has been done to serialize workflow.
+It is a complete and recursiv model with json, rdf serialisation. Its implementation is open and depends of the data-producers implementation.
+
+The ProvDM serialisation needs mivot to be serialised in VOTable. But its implementation too free and recusriv is a obstacle for its reusability.
+
+The "Last-Step-Provenance" is an Provenance addon (not a standard) which lists a list of metadata which matches with Data-origin. Its output is not recursiv and could be easily seraialisezd in a table.
+
+
+DatasetDM provides a table description which include DataOrigin information like authos, date odf publication, link to bibliography, etc.
+DatasetDM is currently not a standard.
 
 
 \section{Expected Data Origin}

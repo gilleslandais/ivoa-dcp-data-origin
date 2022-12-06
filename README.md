@@ -1,3 +1,6 @@
+[![PDF-Preview](https://img.shields.io/badge/PDF-Preview-blue)](https://github.com/gilleslandais/ivoa-dcp-data-origin/releases/download/auto-pdf-preview/data-origin-draft.pdf)
+
+
 # Data Origin in the VO
 
 The goal of the document is to make the Data Origin more visible in
