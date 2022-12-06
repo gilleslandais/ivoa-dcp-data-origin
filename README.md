@@ -78,22 +78,25 @@ like <a href='https://www.ivoa.net/documents/DatasetDM/20170928/index.html'>Data
 The following metadata can be repeated and could follow a controlled vocabulary.
 
 - Author: name or ORCID
+- Organization: name or URL
 - Editor: name or URL
 - Journal: name or URL
-- Organization: name or URL
 - Datacenter that provides the result: name or URL
 - Contact: email
 
 - Resource Identifier: ivoid of resource(s) hosted by the service which provides the result
 - Resource citation: DOI, bibcode of resource(s) hosted by the datacenter which returns the result
-- Remote resource identifier: a remote ressource which was used to build the result
-- Remote resource citation: a remote ressource which was used to build the result
-
+- Original resource identifier: a remote ressource which was used to build the result
 - publication date
-- Curation level
-- Licence
+- Original publication date:
+- Data version 
+
+- Curation level: (controled vocabulary)
+- Operation: Operation as cutout, add-values executed on Data-center on the original data 
+- Licence: (original) licenses - machine-readable URI is preferred
 - Access protocol: eg.TAP query, SCS, ...
 - Query: eg: ADQL
+- software version: Data Center version 
 
 - Comment: Any additional information in text plain that complete the result
 - ...?

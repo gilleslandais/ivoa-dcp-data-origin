@@ -74,7 +74,7 @@ We propose to list the meta-data which responds to the need of Provenance and me
 	
 	Requirement: contact information to producers present; but then let's not make that a MUST: This can be GDPR-relevant data, and it must be possible to leave it out if it is
 	
-	The researcher completes his understanding with Data Origin information easily accesible from the VOtable, and this, regardless of the service which generated the result. For instance, a URL that links an article. 
+	The researcher completes his understanding with Data Origin information easily accessible from the VOTable, and this, regardless of the service which generated the result. For instance, a URL that links an article. 
 	
 	The information could contain the Author, the year of publication, related resources like an article or the original data URL.
 	
@@ -105,45 +105,102 @@ The basics meta-data should contain the data origin (space agency or authors, ar
 
 \section{State of the art}
 
-VOTable as the most of IVOA protocols don't provide any Data origin information. For instance the TAP protocols provides tables and columns description in order togenerate and query tables. The TAP metadata contains information like unit, type and text information. Authors, ublication date or identifiers are not included in the TAP description.
+VOTable as ell as IVOA protocols don't provide any Data Origin information. For instance the TAP protocols provides tables and columns description in order to query tables. The TAP metadata contains information like unit, type and text information. Authors, publication date or identifiers are not included in the TAP description.
 
-The Hips server is a more recent protocol which includes for each dataset (a HiPS) a list of standardized metadata. Amon the metadata figures authors, publication yearsn, Data center idrntifier,or licences.
+Hips is a more recent protocol which includes for each Dataset (HiPS) a list of standardized metadata. HiPS metadata include authors, publication year, Data center identifier or licenses.
 
 
-\subsection{Data-origin in IVOA registry}
-The registry has Data origin like authorts, publication date, link to other resources and alternate identifier. Among the identifier, the DOI is accepted as alternate-identifier with a "doi" prefix (eg: $<altIdentifier>doi:10.26093/cds/vizier.1355</altIdentifier>$).
+\subsection{Data Origin in IVOA registry}
+IVOA registries contains in its metadata the Data Origin like authors, publication date, references and alternate identifiers like DOI (eg: $<altIdentifier>doi:10.26093/cds/vizier.1355</altIdentifier>$).
 
-The VO registries offer services to any data-center, data-producers or service implementer to index a resource to be accessible in the Virtual Observatory framework. 
-The IVOA registry is an open service without any moderators. The data are regularly harvested by registry-of registry which check the service/resource availability. However , the ivoa don't guaranty te resources sustainability.
+The VO registries are available to index any services and resources hosted by data-producers, data-centers. 
+The VO registries provide an open framework without any moderators. The data are regularly harvested by registries-of-registries which check the services/resources availability. However, the IVOA don't guaranty the resources sustainability.
 
-The IVOID used to identify any resource in the registry is unique but it is not a identifier on sustatinable resource. 
-A reason why the ivoid has not been considered yet to be citable in a scientific article. 
+The IVOA provides a unique identifier to any resources in the registry. The ivoid has not been considered to be citable in articles yet, because it is a technical identifier and because resources sustainability is not required in the IVOA publication process.
 
-However, the registry metadata schema is based on schollix and datacite schemas. Then a curation registration could enable to provide the bibtex information to cite the data.
+However, the registry metadata schema is based on Scholix and Datacite schemas. It opens citation capabilities with combining the metadata required to provide bibtex.
 
 \subsection{Data Origin serialisation}
-Today Proveance or DatasetDM provide models that can be used to serialize DataOrigin.
+Today Provenance and DatasetDM are models that can be used to serialize Data Origin.
 
-The Prorvenance DataModel (ProvDM) is based on Entities, Agents and Activities ofr the W3C Provenance description. The models has been done to serialize workflow.
-It is a complete and recursiv model with json, rdf serialisation. Its implementation is open and depends of the data-producers implementation.
+The Provenance Data Model (ProvDM) is based on Entities, Agents and Activities which are defined in the W3C Provenance. The model is dedicated to serialize workflow,
+it is a recursive model that can be serialized in JSON or RDF. 
 
-The ProvDM serialisation needs mivot to be serialised in VOTable. But its implementation too free and recusriv is a obstacle for its reusability.
-
-The "Last-Step-Provenance" is an Provenance addon (not a standard) which lists a list of metadata which matches with Data-origin. Its output is not recursiv and could be easily seraialisezd in a table.
+The ProvDM serialization needs mivot to be serialized in VOTable. But the recursive models and the metadata serialisation which is subject to the producer implementation, are obstacles for its reusability.
 
 
-DatasetDM provides a table description which include DataOrigin information like authos, date odf publication, link to bibliography, etc.
-DatasetDM is currently not a standard.
+The "Last-Step-Provenance" is a Provenance extension (not a standard) which gather a list of metadata which matches with Data Origin. Its output is not recursive and could be easily serialized in a table.
+
+
+DatasetDM provides a table description which includes Data Origin information like authors, date of publication, links to bibliography, etc.
+DatasetDM is not a standard yet.
+
+\subsection{DALI}
+DALI is a protocol basis , used for instance in TAP. It includes services to  check the availability and capabilities of a service. It includes also information in the VOTable output format as the request STATUS or the request QUERY.
 
 
 \section{Expected Data Origin}
 
+List of expected metadata:
+
+\begin{tabular}{|l|p{0.6\textwidth}|} \hline
+Author & name or ORCID of the Data producer (human)\\ \hline
+Organization&  name, ROR or URL of the Data producer (organisation)\\ \hline
+Editor & name or URL  of the editor (when data are attached to a publication)\\ \hline
+Journal & name or URL of the reference journal (when data are attached to a publication)\\ \hline
+Datacenter & namen, ROR or URL of the data center who hosts the data \\ \hline
+Contact & Data center email \\ \hline
+
+Resource Identifier & ivoid of resource(s) hosted by the service which provides the result \\ \hline
+Resource citation & DOI, bibcode of resource(s) hosted by the Data Center which returns the result \\ \hline
+Original resource identifier & remote/original resource which was used to build the result \\ \hline
+original resource citation & remote/original resource which was used to build the result \\ \hline
+Publication date & publication date in the Data Center \\ \hline
+Original Publication date &  publication date of the original resource \\ \hline
+Curation level & curation level in the Data Center \\ \hline
+Operation & Operation as cutout, add-values executed on Data-center on the original data \\ \hline
+License & (original) licenses - machine-readable URI is preferred\\ \hline
+Data version & version or release\\ \hline
+Access protocol &  eg.TAP query, SCS, ... \\ \hline
+Query & eg: ADQL \\ \hline
+Version & version or date of Data-center software\\ \hline
+.... & .... \\ \hline
+\end{tabular}
+
+
+\subsection{Condition for citation}
+\textbf{I don't know if it is the place to talk about that??}
+
+
+Data Citation requires a sustainable URL which is not guarantied in IVOA resources. 
+Unlike ivoid, the DOI guaranties a sustainable URL and should be used for citation. 
+
+Datacite provides a bibtex capability:
+eg:
+
+
+It could be possible to exploit ivoa registry metadata to provide a citation service for resources having a DOI.
+In any cases, ADS (Nasa) citation is preferable for its clean curation and must be privileged each time it is possible.
+However, ADS don't provide a citation for any datasets, even those having a DOI.
+
+
+
+
+
 \section{Implementation tracks}
 
-\begin{itemize}
-\item mapping metadata with Provenance, Datacite, ivo-registry ?...
-\item Serialization using existing standard ? (ProvDM, mivot, VOTable, registry?)
-\end{itemize}
+\subsection{VOTable proposal}
+
+\subsection{Registry proposal}
+\textbf{I don't know if it is the place to talk about that??}
+
+% may be in an other note? 
+%
+% UPDATE - licenses : type, uri as Datacite
+% ADD - copyrights
+% ADD - akcnowledgement
+% ADD - curation text.. added values, column selection...., extract....
+% list of Data Origin metadata  in registry
 
 \appendix
 \section{Changes from Previous Versions}
