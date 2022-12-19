@@ -351,7 +351,10 @@ class VOCite:
         info = self.get_registry_info()
 
         if "source_origin" in info.info:
-            mo = re.match(".*bibcode:([^ ]+).*$", info.info["source_origin"])
+            source = info.info["source_origin"].replace("\n","")
+            mo = re.match(".*bibcode:([^ ]+).*$", source)
+            if mo is None:
+                mo = re.match(".*(\d{4}[a-zA-Z]+[a-zA-Z0-9.]+).*$", source)
             if mo:
                 ads = adsbib.adsbib()
                 try:
@@ -460,6 +463,12 @@ if __name__ == "__main__":
             regdataorig.cite()
         except Exception as e:
             sys.stderr.write(str(e)+"\n");
+        try:
+            vocite = VOCite(__ivoid)
+            print("\nCITE the \"source origin\" (using ADS or registry)")
+            vocite.cite_source_origin()
+        except Exception as e:
+           sys.stderr.write(str(e)+"\n")
 
     elif __filename and __type == "VOTable":
         table = vot.parse(__filename)
@@ -473,16 +482,21 @@ if __name__ == "__main__":
 
         print("\nGET Data Origin (from registry)")
         regdataorig.print_info()
-
         print("\nCITE a VO query (from VOTable)")
         vodatorig.cite()
 
-        print("\nCITE a resource (from Registry)")
-        regdataorig.cite()
+        try:
+            print("\nCITE a resource (from Registry)")
+            regdataorig.cite()
+        except Exception as e:
+           sys.stderr.write(str(e)+"\n")
 
-        vocite = VOCite(vodatorig.ivoid[0])
-        print("\nCITE the \"source origin\" (using ADS or registry)")
-        vocite.cite_source_origin()
+        try:
+            vocite = VOCite(vodatorig.ivoid[0])
+            print("\nCITE the \"source origin\" (using ADS or registry)")
+            vocite.cite_source_origin()
+        except Exception as e:
+           sys.stderr.write(str(e)+"\n")
 
         print("\nAck (from VOTable+registry)")
         vocite.ack(vodatorig)
