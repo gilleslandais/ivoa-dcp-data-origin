@@ -17,35 +17,41 @@
 
 <INFO ID="VERSION" name="version" value="7.294"/>
 
-<!-- metadata focused on publisher autput-->
-<INFO ID="IVOID" value="ivo://cds.vizier/j/aj/161/36"/>
-<INFO ID="DATA-CENTER" value="ivo://cds.vizier"/><!-- use DOI ? -->
-<INFO ID="ACCESS-PROTOCOL" value="Simple Cone Search 1.03"/><!-- URL to doc ? -->
-<INFO ID="QUERY-DATE" value="2022-10-30T12:08:00"/>
-<INFO ID="QUERY" value="https://vizier.cds.unistra.fr/viz-bin/conesearch/J/AJ/161/36/table8?RA=285.367%26DEC=39.28%26SR=1"/>
-<INFO ID="DATA-CENTER-CONTACT" value="cds-question@unistra.fr"/>
-<INFO ID="LANDING-PAGE" value="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/AJ/161/36"/>
-
-<!-- Extra information from Data Oririgin (basic info) -->
-<INFO ID="Publication-id" value="doi:10.26093/cds/vizier.51610036"/>
-<INFO ID="Curation-level" value="Research"/>
-<INFO ID="Resource-version" value="2022-10-07T07:50:31Z"/>
-<INFO ID="Rights" value="https://cds.unistra.fr/vizier-org/licences_vizier.html"/>
-
-<INFO ID="Author" value="Bryson S."/><!-- ORCID ? -->
-<INFO ID="Publication-ref" value="2021AJ....161...36B"/><!-- DOI ? -->
-<INFO ID="Editor" value="Astronomical Journal"/>
-<INFO ID="Publication-date" value="2021-03-16T13:00:26Z"/>
-
-
 <!--
 Execution Reports
  -->
 <INFO ID="Target" name="-c" value="285.367000+39.280000,rd=1.">
 Constraint SR=1</INFO>
 
+<!-- TODO: update ID= to name= -->
+
+<!-- metadata focused on publisher output-->
+<INFO ID="protocol" value="Simple Cone Search 1.03"/><!-- URL to doc ? -->
+<INFO ID="request_date" value="2022-10-30T12:08:00"/>
+<INFO ID="request" value="https://vizier.cds.unistra.fr/viz-bin/conesearch/J/AJ/161/36/table8?RA=285.367%26DEC=39.28%26SR=1"/>
+<INFO ID="contact" value="cds-question@unistra.fr"/>
+<INFO ID="version" value="7.294"/>
+
+
 <RESOURCE ID="yCat_51610036" name="J/AJ/161/36">
   <DESCRIPTION>117 exoplanets in habitable zone with Kepler DR25 (Bryson+, 2021)</DESCRIPTION>
+
+  <INFO ID="ivoid" value="ivo://cds.vizier/j/aj/161/36"/>
+  <INFO ID="publisher" value="doi:10.26093/cds/vizier.51610036"/>
+  <INFO ID="landing_page" value="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/AJ/161/36"/>
+
+  <!-- Extra information from Data Oririgin (basic info) -->
+  <INFO ID="publication_id" value="doi:10.26093/cds/vizier.51610036"/>
+  <INFO ID="curation_level" value="Research"/>
+  <INFO ID="resource_version" value="2022-10-07"/>
+  <INFO ID="rights" value="https://cds.unistra.fr/vizier-org/licences_vizier.html"/>
+  <INFO ID="creator" value="Bryson S."/><!-- ORCID ? -->
+  <INFO ID="related_resource" value="2021AJ....161...36B"/>
+  <INFO ID="editor" value="Astronomical Journal"/>
+  <INFO ID="publication_date" value="2021-03-16"/>
+  <INFO ID="resource_date" value="2021"/>
+
+
   <COOSYS ID="J2000_2000.000" system="eq_FK5" equinox="J2000" epoch="2000.000"/>
   <TABLE ID="J_AJ_161_36_table8" name="J/AJ/161/36/table8" ivo-id="ivo://cds.vizier/j/aj/161/36"><!-- ADD IVOID for astropy.table.Table.read() -->
     <INFO ID="IVOID" value="ivo://cds.vizier/j/aj/161/36"/>

@@ -30,12 +30,13 @@ import requests as rq
 import xml.etree.ElementTree as ET
 import lxml.etree as etree
 import re
+import logging
 
 import adsbib
 
-DATA_ORIGIN_REQ = ("IVOID", "DATA-CENTER", "VERSION", "ACCESS-PROTOCOL", "QUERY", "QUERY-DATE", "DATA-CENTER-CONTACT", "LANDING-PAGE")
-DATA_ORIGIN_PROV = ("Publication-id", "Curation-level", "Resource-version", "Rights", "title", # DataCenter info
-                    "Author", "Publication-ref", "Editor", "Publication-ref-date") # bibliographic/origin info
+DATA_ORIGIN_REQ = ("ivoid", "publisher", "version", "protocol", "request", "request_date", "contact", "landing_page")
+DATA_ORIGIN_PROV = ("publication_id", "curation_level", "resource_version", "rights", "title", # DataCenter info
+                    "creator", "related_resource", "editor", "publication_date", "resource_date") # bibliographic/origin info
 DATA_ORIGIN_DML= ("product_type", "product_sub_type", "did", "title", "creationType", "date", "author", "pud_did", "rights", "release_date", "contact", "doi", "bibcode")
 
 REGISTRY_SERVER = "https://dc.zah.uni-heidelberg.de/rr/q/pmh/pubreg.xml"
@@ -77,21 +78,21 @@ class DataOriginRegistry(DataOrigin):
         root = self.__xml
         h = {}
         elt = root.findall(".//curation/publisher")[0].attrib["ivo-id"]
-        if elt: h["datacenter"] = root.findall(".//curation/publisher")[0].text
+        if elt: h["publisher"] = root.findall(".//curation/publisher")[0].text
 
         author = []
         for elt in root.findall(".//curation//creator/name"):
            author.append(elt.text)
         if len(author)>0:
-           h["Author"] = ",".join(author)
+           h["creator"] = ",".join(author)
 
         elt = root.findall(".//curation/date[@role='Created']")
         if elt:
-           h["Publication-date"] = elt[0].text
+           h["publication_date"] = elt[0].text
 
         elt = root.findall(".//curation/contact/email")
         if elt:
-            h["DATA-CENTER-CONTACT"] = elt[0].text
+            h["contact"] = elt[0].text
 
         elt = root.findall(".//content/type")
         if elt:
@@ -99,19 +100,19 @@ class DataOriginRegistry(DataOrigin):
 
         elt = root.findall(".//content/contentLevel")
         if elt:
-            h["Curation-level"] = elt[0].text
+            h["curation_level"] = elt[0].text
 
         elt = root.findall(".//rights")
         if elt:
-            h["Rights"] = elt[0].text
+            h["rights"] = elt[0].text
         
         elt = root.findall(".//content/referenceURL")
         if elt:
-            h["LANDING-PAGE"] = elt[0].text
+            h["landing_page"] = elt[0].text
 
         elt = root.findall(".//identifier")
         if elt:
-            h["IVOID"] = elt[0].text
+            h["ivoid"] = elt[0].text
 
         
         elt = root.findall(".//title")
@@ -146,19 +147,19 @@ class DataOriginRegistry(DataOrigin):
             print(f"  doi={{{self.info['doi']}}},")
         if "title" in self.info:
             print(f"  title={{{self.info['title']}}}")
-        if "Author" in self.info:
-            print(f"  authors={{{self.info['Author']}}},")
+        if "creator" in self.info:
+            print(f"  authors={{{self.info['creator']}}},")
 
         ivoid_cite = f"{self.__registry}?verb=GetRecord&metadataPrefix=ivo_vor&identifier={self.__ivoid}"
         print(f"  url={{{ivoid_cite}}},")
-        if "DATA-CENTER" in  self.info:
-            print("  publisher={"+self.info["DATA-CENTER"]+"},")
+        if "publisher" in  self.info:
+            print("  publisher={"+self.info["publisher"]+"},")
         version = ""
         print("  ivoid={"+self.__ivoid+"},")
         if "version" in self.info:
             version += "(version "+self.info["version"]+")"
-        if "Publication-date" in self.info:
-            version += " executed at "+self.info["Publication-date"]
+        if "publication_date" in self.info:
+            version += " executed at "+self.info["publication_date"]
         if version != "":
             print("  version={"+version+"}\n")
 
@@ -180,7 +181,8 @@ class VOFileDataOrigin(DataOrigin):
         for key in DATA_ORIGIN_PROV:
             try:
                 elt = self.__votable.get_info_by_id(key)
-            except:
+            except Exception as e:
+                logging.warning(e)
                 data.append(None)
                 continue
             data.append(elt.value)
@@ -190,19 +192,19 @@ class VOFileDataOrigin(DataOrigin):
         h = {}
         try:
             # Note ivoid could be multiple in case of xmatch/TAP
-            self.ivoid = [self.__votable.get_info_by_id("IVOID").value]
+            self.ivoid = [self.__votable.get_info_by_id("ivoid").value]
         except :
             name = self.__votable.resources[0].name
             if name and name[0] in ('IVXJB') and name[1] == '/': #vizier
                 self.ivoid = ["ivo://cds.vizier/"+name.lower()]
             else:
-                raise Exception("IVOID is required") 
+                raise Exception("ivoid is required") 
 
         for key in DATA_ORIGIN_REQ:
             try:
                 h[key] =  self.__votable.get_info_by_id(key).value
-            except:
-                pass
+            except Exception as e:
+                logging.warning(e)
         return h
 
 
@@ -213,7 +215,7 @@ class VOFileDataOrigin(DataOrigin):
     def print_info(self):
         for rec in self.data_origin:
             print(f"RESOURCE {self.ivoid[0]} (from VOTable)")
-            print(f"{'IVOID':<20}:{self.ivoid[0]}")
+            print(f"{'ivoid':<20}:{self.ivoid[0]}")
             for key in  DATA_ORIGIN_PROV:
                 if rec[key] != None:
                     print(f"{key:<20}:{rec[key]}")
@@ -223,54 +225,54 @@ class VOFileDataOrigin(DataOrigin):
         bibtex = "% Protoype to cite a VO-query ?\n"
         bibtex += "@query{\n"
         bibtex += "  ivoa={"+",".join(self.ivoid)+"}\n"
-        if "DATA-CENTER" in  self.data_request:
-            bibtex += "  publisher={"+self.data_request["DATA-CENTER"]+"}\n"
+        if "publisher" in  self.data_request:
+            bibtex += "  publisher={"+self.data_request["publisher"]+"}\n"
         version = ""
-        if "ACCESS-PROTOCOL" in self.data_request:
-            version += self.data_request["ACCESS-PROTOCOL"]+" "
-        if "VERSION" in self.data_request:
-            version += "(version "+self.data_request["VERSION"]+")"
-        if "QUERY-DATE" in self.data_request:
-            version += " executed at "+self.data_request["QUERY-DATE"]
+        if "protocol" in self.data_request:
+            version += self.data_request["protocol"]+" "
+        if "version" in self.data_request:
+            version += "(version "+self.data_request["version"]+")"
+        if "request_date" in self.data_request:
+            version += " executed at "+self.data_request["request_date"]
         if version != "":
             bibtex += "  version={"+version+"}\n"
-        if "QUERY" in self.data_request:
-            bibtex += "  url={"+self.data_request["QUERY"]+"}\n"
+        if "request" in self.data_request:
+            bibtex += "  url={"+self.data_request["request"]+"}\n"
         bibtex += "}" 
         print(bibtex)
 
     def ack(self):
         """acknowledgment using VOTable header only
-           needs: ivoid, DATA-CENTER, ACCESS-PROTOCOL, VERSION
+           needs: ivoid, publisher, protocol, version
                   source_origin , author, date_origin
         """
         protocol = "?"
-        if "ACCESS-PROTOCOL" in self.data_request:
-            protocol = self.data_request["ACCESS-PROTOCOL"]
+        if "protocol" in self.data_request:
+            protocol = self.data_request["protocol"]
         datacenter = "?"
-        if "DATA-CENTER" in self.data_request:
-            datacenter = self.data_request["DATA-CENTER"]
+        if "publisher" in self.data_request:
+            datacenter = self.data_request["publisher"]
         version = "?"
-        if "VERSION" in self.data_request:
-            version = self.data_request["VERSION"]
+        if "version" in self.data_request:
+            version = self.data_request["version"]
         qdate = "?"
-        if "QUERY-DATE" in self.data_request:
-            qdate = self.data_request["QUERY-DATE"]
+        if "request_date" in self.data_request:
+            qdate = self.data_request["request_date"]
         
 
         author = "?"
-        if "Author" in self.data_origin:
-            author = self.data_origin["Author"]
+        if "creator" in self.data_origin:
+            author = self.data_origin["creator"]
         source_origin = "?"
-        if "Publication-ref" in  self.data_origin:
-            source_origin = self.data_origin["Publication-ref"]
+        if "source" in  self.data_origin:
+            source_origin = self.data_origin["source"]
         date_origin = "?"
-        if "Publication-ref-date" in  self.data_origin:
-            date_origin = self.data_origin["Publication-ref-date"]
+        if "date" in  self.data_origin:
+            date_origin = self.data_origin["date"]
 
 
         import textwrap
-        print("\n".join(textwrap.wrap(f"""We extract data published in {source_origin} ({author}, {date_origin}),
+        print("\n".join(textwrap.wrap(f"""(from VOTable)\nWe extract data published in {source_origin} ({author}, {date_origin}),
 via {datacenter} services (ivoa resource={self.__ivoid}, {pubdate})
 using {protocol} (version {version}, executed at {qdate})""", width=80)))
 
@@ -324,7 +326,7 @@ class VODMLFileDataOrigin(DataOrigin):
         for rec in self.data_origin:
             print("-----------------------------------")
             print(f"RESOURCE {rec['did']} (from VOTable)")
-            print(f"{'IVOID':<20}:{rec['did']}")
+            print(f"{'ivoid':<20}:{rec['did']}")
             for key in  DATA_ORIGIN_DML:
                 if rec[key] != None:
                     print(f"{key:<20}:{rec[key]}")
@@ -364,8 +366,8 @@ class VOCite:
                         export_citation = re.sub("adsnote =","  ivoid = {"+self.__ivoid+"},\n  adsnote =", export_citation)
                         print(export_citation)
                         return
-                except:
-                    pass
+                except Exception as e:
+                    logging.debug(e)
 
             mo = re.match(".*doi:([^ ]+).*$", info.info["source_origin"])
             if mo:
@@ -377,8 +379,8 @@ class VOCite:
                         export_citation = re.sub("adsnote =","  ivoid = {"+self.__ivoid+"},\n  adsnote =", export_citation)
                         print(export_citation)
                         return
-                except:
-                    pass
+                except Exception as e:
+                    logging.debug(e)
                 return
 
     def cite(self):
@@ -388,36 +390,38 @@ class VOCite:
     def ack(self, vofile:VOFileDataOrigin=None):
         data_request = vofile.data_request
         protocol = "?"
-        if "ACCESS-PROTOCOL" in data_request:
-            protocol = data_request["ACCESS-PROTOCOL"]
+        if "protocol" in data_request:
+            protocol = data_request["protocol"]
         datacenter = "?"
-        if "DATA-CENTER" in data_request:
-            datacenter = data_request["DATA-CENTER"]
+        if "publisher" in data_request:
+            datacenter = data_request["publisher"]
         version = "?"
-        if "VERSION" in data_request:
-            version = data_request["VERSION"]
+        if "version" in data_request:
+            version = data_request["version"]
         qdate = "?"
-        if "QUERY-DATE" in data_request:
-            qdate = data_request["QUERY-DATE"]
+        if "request_date" in data_request:
+            qdate = data_request["request_date"]
 
         reg_info = self.get_registry_info()
         info = reg_info.info
         pubdate = ""
         if "version" in info:
             pubdate += "(version "+info["version"]+")"
-        if "Publication-date" in info:
-            pubdate += info["Publication-date"]
+        if "publication_date" in info:
+            pubdate += info["publication_date"]
         source_origin = ""
-        if "Author" in info:
-            author = info["Author"].split(",")[0]
+        if "creator" in info:
+            author = info["creator"].split(",")[0]
         if "source_origin" in info:
             source_origin = info["source_origin"]
-        if "datacenter"in info:
+        if "datacenter" in info:
             datacenter = info["datacenter"]
         else:
             print("not available yet")
                
         date_origin = "???"
+        if "date" in info:
+            date_origin = info["date"]
 
         import textwrap
         print("\n".join(textwrap.wrap(f"""We extract data published in {source_origin} ({author}, {date_origin}),
@@ -432,7 +436,7 @@ if __name__ == "__main__":
     import getopt
 
     try:
-        __opts, __args = getopt.getopt(sys.argv[1:], "h:t:f:i:", ["help", "type=", "file=", "ivoid="])
+        __opts, __args = getopt.getopt(sys.argv[1:], "ah:t:f:i:", ["help", "type=", "file=", "ivoid=","ads"])
     except getopt.GetoptError as err:
         help("__main__")
         sys.exit(1)
@@ -440,6 +444,7 @@ if __name__ == "__main__":
     __filename = None
     __ivoid = None
     __type = "VOTable"
+    __use_ads = False
 
     for __o, __a in __opts:
         if __o in ("-f", "--file"):
@@ -451,6 +456,8 @@ if __name__ == "__main__":
             __ivoid= __a
         elif __o in ("-t", "--type"):
             __type = __a
+        elif __o in ("-a", "--ads"):
+            __use_ads = True
 
     if __ivoid :
         regdataorig = DataOriginRegistry(__ivoid)
@@ -462,13 +469,15 @@ if __name__ == "__main__":
         try:
             regdataorig.cite()
         except Exception as e:
-            sys.stderr.write(str(e)+"\n");
-        try:
-            vocite = VOCite(__ivoid)
-            print("\nCITE the \"source origin\" (using ADS or registry)")
-            vocite.cite_source_origin()
-        except Exception as e:
-           sys.stderr.write(str(e)+"\n")
+            logging.error(e);
+
+        if __use_ads:
+            try:
+                vocite = VOCite(__ivoid)
+                print("\nCITE the \"source origin\" (using ADS or registry)")
+                vocite.cite_source_origin()
+            except Exception as e:
+                logging.error(e)
 
     elif __filename and __type == "VOTable":
         table = vot.parse(__filename)
@@ -489,14 +498,15 @@ if __name__ == "__main__":
             print("\nCITE a resource (from Registry)")
             regdataorig.cite()
         except Exception as e:
-           sys.stderr.write(str(e)+"\n")
+           logging.error(e)
 
         try:
             vocite = VOCite(vodatorig.ivoid[0])
-            print("\nCITE the \"source origin\" (using ADS or registry)")
-            vocite.cite_source_origin()
+            if __use_ads:
+                print("\nCITE the \"source origin\" (using ADS or registry)")
+                vocite.cite_source_origin()
         except Exception as e:
-           sys.stderr.write(str(e)+"\n")
+            logging.error(e)
 
         print("\nAck (from VOTable+registry)")
         vocite.ack(vodatorig)
