@@ -110,14 +110,15 @@ For queries on evolving dataset, the version or the date must complete the infor
 
 |meta-data| Description| Mandatory |
 |---      |:-:  |:-: |
-|IVOID    | ivoid identifier to link registry | yes |
-|DATA-CENTER| Data center that provides the VOTable | yes |
-|VERSION | Dataset version (or release date) | |
-|ACCESS-PROTOCOL| Protcol access with version | |
-|QUERY| Request url  | |
-|QUERY-DATE| Query execution date | |
-|DATA-CENTER-CONTACT| email or URL contact | |
-|LANDING-PAGE| Dataset landing page | |
+|ivoid    | ivoid identifier to link registry | yes |
+|publisher| Data center that provides the VOTable | yes |
+|version | Dataset version (or release date) | |
+|service_protocol| Protcol access with version | |
+|request| Request url  | |
+|request_post| (POST Request) POST arguments **new**  | |
+|request_date| Query execution date | |
+|contact| email or URL contact | |
+|landing_page| Dataset landing page | |
 
 Serialisation example: &lt;info&gt; tag makes the jobs. see <a href='tests/J_AJ_161_36_table8.xml'>SCS example</a>
 
@@ -135,10 +136,13 @@ Dataset-origin completes the "Query information" -
 |Rights| Licence URI | |
 |Rights-type| Licence type (eg: CC-by, CC-0, private, public) | |
 |Copyrights| Copyright text | |
-|Author| Dataset Author(s) or group | |
+|Creator| Dataset Author(s) or group | |
 |Publication-ref| Identifier of the original resource that can be an article or the origin Data Center| 
 |Editor| editor name| |
+|Relation_type | controled vocabulary (VOResource: relationshipType ? ) to specify relation to related resource **new**|
+|related_resource | Original resource **new**|
 |Publication-date| Date of the original publication | |
+|resource_date   | Date of original resource **new** |
 
 *Publication-id*: can be prefixed with the identifier type:
 eg: bibcode:...,
