@@ -23,16 +23,17 @@
 \begin{document}
 \begin{abstract}
 The goal of the document is to make the Data Origin more visible in the query results executed in the Virtual Observatory. 
-The document lists meta-data required to provide sufficient traceability to end-users in order to improve the understanding 
+The document lists metadata required to provide sufficient traceability to end-users in order to improve the understanding 
 of the resultsets and enabling its reuse and its citation.
 
 \textbf{NOTE} in work -  template for a possible IVOA note.
+
 
 \end{abstract}
 
 
 \section*{Acknowledgments}
-
+Alberto Accomazzi (ADS), Anne Catherine Raugh (University of Maryland), Rafaele d'Abrusco (CfA), Mihaela Buga (CDS)
 
 \section*{Conformance-related definitions}
 
@@ -41,10 +42,10 @@ of the resultsets and enabling its reuse and its citation.
 
 Data Origin is required for end users to understand data, for citation and for reusability. The  provenance is cited as a mandatory criterion in the EOSC or in RDA FAIR definition. 
 
-The virtual observatory provides an advanced framework to search and consume data provided by Data Centers or Space Agencies who apply curation in different level.  In this context, Data Origin in output includes meta-data from the data producer (author, space agency) and the Data Center which hosts the resource. 
-Depending of the implementation, the users can find the origin information in the Data center web pages (landing pages) or in the Registries of the Virtual Observatory. For citation, ADS (Astrophysics Data System, Nasa) provides citation capabilities with bibtex output. There are no VO standards to get the information easily yet. For instance, the origin meta-data are not included neither in output format, nor in protocols used to access the data.
-A list of basics meta-data added in strategic location (as result output or resource listing) would give easier the authors search who is looking for how to cite VO resources. Tracing Data Origin, from the producer to the final query enables also to report to end users the different agents implied in the data preservation (authors, data center, space agencies, journal)- especially when data can be subject to a curation  which depends of the different agents.
-We propose to list the meta-data which responds to the need of Provenance and methods available today for their implementations. 
+The virtual observatory provides an advanced framework to search and consume data provided by Data Centers or Space Agencies who apply curation in different level.  In this context, Data Origin in output includes metadata from the data producer (author, space agency) and the Data Center which hosts the resource. 
+Depending of the implementation, the users can find the origin information in the Data Center web pages (landing pages) or in the Registries of the Virtual Observatory. For citation, ADS (Astrophysics Data System, Nasa) provides citation capabilities with bibtex output. There are no VO standards to get the information easily yet. For instance, the origin metadata are not included neither in output format, nor in protocols used to access the data.
+A list of basics metadata added in strategic location (as result output or resource listing) would give easier the authors search who is looking for how to cite VO resources. Tracing Data Origin, from the producer to the final query enables also to report to end users the different agents implied in the data preservation (authors, Data Center, space agencies, journal)- especially when data can be subject to a curation  which depends of the different agents.
+We propose to list the metadata which responds to the need of Provenance and methods available today for their implementations. 
 
 \subsection{Role within the VO Architecture}
 
@@ -74,15 +75,13 @@ We propose to list the meta-data which responds to the need of Provenance and me
 \begin{itemize}
 	\item (Data Origin information) A researcher has data in a VOTable that shows an odd feature. They would now like to talk to the creator of the data to help figure out whether that feature is physics or an artefact. 
 	
-	Requirement: contact information to producers present; but then let's not make that a MUST: This can be GDPR-relevant data, and it must be possible to leave it out if it is
+	Requirement: contact information to producers present.
 	
-	The researcher completes his understanding with Data Origin information easily accessible from the VOTable, and this, regardless of the service which generated the result. For instance, a URL that links an article. 
-	
-	The information could contain the Author, the year of publication, related resources like an article or the original data URL.
-	
+	The researcher completes his understanding with Data Origin information easily accessible from the VOTable, and this, regardless of the service which generated the result. For instance, the information contains the Authors, the year of publication or related resources like article or the original data URL.
+		
 	When data provided by the service is derived from external resources, or if the data were performed with an additional curation, the nature and links to external resources are available.
 	
-	For instance, a table published in a journal or by a Space Agency is also hosted in a Data Center like CDS, GAVO, etc. The data curation depends of the Data Center which can add associated data, enrich meta-data (eg: add filter for magnitude) or make a sub-selection of columns. [an advanced serialisation could be based on DOI vocabulary "isVariantFormOf", "IsDerivedFrom", ...]
+	For instance, a table published in a journal or by a Space Agency is also hosted in a Data Center like CDS, GAVO, etc. The data curation depends of the Data Center which can add associated data, enrich metadata (eg: add filter for magnitude) or make a sub-selection of columns. [an advanced serialisation could be based on DOI vocabulary "isVariantFormOf", "IsDerivedFrom", ...]
 	
 	\item (Reproducibility) A researcher revisits work they did six months earlier in an ad-hoc fashion and would now like to reproduce it in a more structured fashion. To do that, they need to know, say, which queries against which services, or perhaps which programs, produced the files. 
 	
@@ -96,20 +95,20 @@ We propose to list the meta-data which responds to the need of Provenance and me
 	
 	Example (American Astronomical Society template):
 	
-	"we searched optical astrometric data of these sources from the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia Collaboration et al. 2021) via the Gaia archive (Gaia Collaboration 2020)."*
+	"we searched optical astrometric data of these sources from the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia Collaboration et al. 2021) via the CDS archive"*
 	
 	\item (workflow) Give me a bibliography of everything I've used in the workflow"
 	The VOTable resulting of a session contains homogenized metadata that can be merged and compared.
 	
 \end{itemize}
 
-The basics meta-data should contain Data Origin (space agency or authors, article references), the data center providing the resource, the date of publication ...
+The basics metadata should contain Data Origin (space agency or authors, article references), the Data Center providing the resource, the date of publication ...
 
 \section{State of the art}
 
 VOTable as well as IVOA protocols don't provide any Data Origin information. For instance the TAP protocols provides tables and columns description in order to query tables. The TAP metadata contains information like unit, type and text information. Authors, publication date or identifiers are not included in the TAP description.
 
-Hips is a more recent protocol which includes for each Dataset (HiPS) a list of standardized metadata. HiPS metadata include authors, publication year, Data center identifier or licenses.
+HiPS is a more recent protocol which includes for each Dataset (HiPS) a list of standardized metadata. HiPS metadata include authors, publication year, Data Center identifier or licenses.
 
 
 \subsection{Data Origin in IVOA registry}
@@ -132,14 +131,14 @@ it is a recursive model that can be serialized in JSON or RDF.
 The ProvDM serialization needs mivot to be serialized in VOTable. But the recursive model and the metadata serialization which is subject to the producer implementation, are obstacles for its reusability.
 
 
-The "Last-Step-Provenance" is a Provenance extension (not a standard) which gather a list of metadata which matches with Data Origin. Its output is not recursive and could be easily serialized in a table.
+The "Last-Step-Provenance" is a Provenance extension (not a standard yet) which gather a list of metadata which matches with Data Origin. Its output is not recursive and could be easily serialized in a table.
 
 
 DatasetDM provides a table description which includes Data Origin information like authors, date of publication, links to bibliography, etc.
 DatasetDM is not a standard yet.
 
 \subsection{DALI}
-DALI is a protocol basis , used for instance in TAP. It includes services to  check the availability and capabilities of a service. It includes also information in the VOTable output format as the request STATUS or the REQUEST query.
+DALI is a protocol basis, used for instance in TAP. It includes services to  check the availability and capabilities of a service. It includes also information in VOTable as the request STATUS or the REQUEST query.
 
 
 \section{Expected Data Origin}
@@ -151,7 +150,7 @@ List of expected metadata:
 \item Organization:  name, ROR or URL of the Data producer (organization)
 \item Editor : name or URL  of the editor (when data are attached to a publication)
 \item Journal : name or URL of the reference journal (when data are attached to a publication)
-\item Datacenter : name, ROR or URL of the data center who hosts the data 
+\item Data Center : name, ROR or URL of the Data Center who hosts the data 
 \item Contact : Data Center email 
 \item Resource Identifier : ivoid of resource(s) hosted by the service which provides the result
 \item Resource citation : DOI, bibcode of resource(s) hosted by the Data Center which returns the result 
@@ -199,13 +198,13 @@ The metadata listed bellow combines terms from DALI (REC-DALI-1.1), Dublin Core 
 Query information enables to link the registry and to reproduce the query. For queries on evolving dataset, the version or the date must complete the information.\\
 
 \begin{tabular}{|l|l|l|l|}  \hline
-\textbf{meta-data} & \textbf{Description} & \textbf{Level} & \textbf{Dublin Core}\\ \hline
+\textbf{metadata} & \textbf{Description} & \textbf{Level} & \textbf{Dublin Core}\\ \hline
 ivoid             & ivoid identifier to link registry & M &  \\ \hline
-publisher         & Data center that provides the VOTable & M & publisher\\ \hline
+publisher         & Data Center that provides the VOTable & M & publisher\\ \hline
 version           & Software version  & & \\ \hline
 service\_protocol & Protcol access with version & R& \\ \hline
 request           & Request url &  R& \\ \hline 
-request\_post     & (POST Request) POST argumentsl &  & \\ \hline 
+request\_post     & (POST Request) POST arguments &  & \\ \hline 
 request\_date     & Query execution date & R&\\ \hline	 
 contact           & email or URL to contact publisher & & \\ \hline	 
 landing\_page     & Dataset landing page & & \\ \hline
@@ -214,11 +213,14 @@ landing\_page     & Dataset landing page & & \\ \hline
 
 \subsection{Dataset Origin}
 Dataset-origin completes the "Query information" to improve the dataset understanding. This information is intended for end users.
+%When the resource is described in the registry, the metadata must be synchronized by the publisher.
 
-List of meta-data :\\
+If the resource is also described in the registry, they must be synchronized.
+
+List of metadata :\\
 
 \begin{tabular}{|l|p{5cm}|l|l|}  \hline
-\textbf{meta-data} & \textbf{Description} & \textbf{Level} & \textbf{Dublin Core}\\ \hline
+\textbf{metadata} & \textbf{Description} & \textbf{Level} & \textbf{Dublin Core}\\ \hline
 publication\_id    & Dataset identifier that can be used for citation& M  & identifier\\ \hline
 curation\_level    & Controled vocabulary
                    (IVOA rdf, content\_level) &  &  \\ \hline
@@ -249,8 +251,8 @@ In this document, we focused on a basic serialization that allows description im
 This output is adapted for protocol like the Simple Conesearch.
 
 The basic serialization uses INFO tags to populate Data Origin (see the example of a ConeSearch result in appendix  \ref{appendixA}).
-INFO tags are allowed in a VOTable under $VOTABLE$ element or in RESOURCE elements.
-It is then possible to annotate a collection of TABLE which are in different RESOURCEs.
+INFO tags are allowed in VOTable under $<VOTABLE>$ or in $<RESOURCE>$ elements.
+Thus, it becomes possible to annotate a collection of TABLE which are in different resources.
 
 
 Complex query (for instance, a join in a TAP query) needs an advanced output serialization to gather metadata by resource. 
@@ -289,27 +291,34 @@ This output is not treated in the current version of the document.
 %\textbf{Question: do we have to provide an example }
 
 \section{Data Origin in Registry}
+The ivo-id, now available in VOTable, allows to query the resource metadata which are in the VO registry.\\
 
-Expected metadata (VOResource) with their equivalent in Datacite schema to provide Data Origin in the registry
 
-\begin{tabular}{|l|p{5cm}|l|p{5cm}|} \hline
+Expected metadata (VOResource) with their equivalent in Datacite schema (version 4.4) to provide Data Origin in the registry\\
+
+\begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
 \textbf{VOResource} & \textbf{DataCite} & \textbf{Level} & \textbf{Explain} \\ \hline
 identifier    &Identifier (1) &M & ivoid of resource(s) hosted by the service\\ \hline
 title         &Title (3) &M  & resource title\\ \hline
 shortName     &&& Resource short name\\ \hline
 altIdentifier & AlternateIdentifier (11)& R & 
               Alternate identifier accepts bibcode, DOI or URL. DOI should be privileged to facilitate citation and link with DataCite or Crossref..eg: DOI \\ \hline
+\multicolumn{4}{l}{(*) terms allowing name and Orcid (AltIdentifier in VOResurce)} \\ 
+\end{tabular}
 
+\begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
 \multicolumn{4}{|l|}{\textbf{curation}} \\ \hline
 .publisher     & Publisher (4) & M &publisher (*)\\ \hline
 .creator       & Creator (2) & M & author(s) (*)\\ \hline
 .contributor   & Contributor & & contributor(s) (*)\\ \hline
-.date [Created]& Dates [created] (8)& M & creation date (in data center)\\ \hline
+.date [Created]& Dates [created] (8)& M & creation date (in Data Center)\\ \hline
 .date [Updated]& Dates [updated] (8)& M & last modification\\ \hline
-  ?            & PublicationYear (5) & & publication year in data center\\ \hline
+  ?            & PublicationYear (5) & & publication year in Data Center\\ \hline
 .version       & Version (15) & R &\\ \hline
 .contact       & &&\\ \hline
+\end{tabular}
 
+\begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
 \multicolumn{4}{|l|}{\textbf{content} } \\ \hline
 .source        & RelatedIdentifier (12) (type=bibcode, relationType=IsSupplementTo) & R & bibcode\\ \hline
 .referenceURL  & & R & landing page\\ \hline
@@ -317,8 +326,11 @@ altIdentifier & AlternateIdentifier (11)& R &
 .description   & Description (17)& & abstract\\ \hline
 .contentLevel  & & &\\ \hline
 .relationShip  & RelatedIdentifiers (12) & R &link to remote resource (Recommended to link Original Data Center) \\ \hline
-..relatedResource & RelatedIdentifier (12) & R &\\ \hline
+..relationshipType & relationType (12.b) & &\\ \hline
+..relatedResource  & RelatedIdentifier (12) & R &\\ \hline
+\end{tabular}
 
+\begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
 \multicolumn{4}{|l|}{\textbf{rights}} \\ \hline
 rights   & Rights (16)& R& licence
           The right element accepts free text. However, it is preferable to provide a machine-readable License. See the list https://spdx.org/licenses/.
@@ -327,8 +339,8 @@ rights   & Rights (16)& R& licence
          & rightsIdentifier & & standard licence name .ex CC-by.
          Copyright is accepted by FAIR principle. But copyright is only a link to the data producer. It gives the contact point to any users who would like to use data. Copyright is more simple to implement for data-center that provides a copy of original resource, but its use is not well integrated in an interoperable workflow.
          \\ \hline
-\multicolumn{4}{l}{(*) terms allowing name and Orcid (AltIdentifier in VOResurce)} \\ \hline
-\end{tabular}
+
+\end{tabular}\\
 
 
 
@@ -372,12 +384,12 @@ Example of Creator:
 
 \section{Acknowledgment template}
 
-Example of acknowledgment that can be extract from the meta-data:\\
+Example of acknowledgment that can be extract from the metadata:\\
 
 \textbf{Template}:\\
-We extract data published in <related\_resource> (<creator>, <date>),
+We extract data published in <related\_resource> (<creator>, <resource\_date>),
 via <publisher> services (ivoa resource=<ivoid>, <publication\_date>)
-using <service\_protocol> (version <version>, executed at <query\_date>\\
+using <service\_protocol> (version <version>, executed at <request\_date>\\
 
 
 \textbf{Example}:\\
