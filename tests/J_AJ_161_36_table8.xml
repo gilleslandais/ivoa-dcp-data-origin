@@ -20,8 +20,8 @@
 <!--
 Execution Reports
  -->
-<INFO ID="Target" name="-c" value="285.367000+39.280000,rd=1.">
-Constraint SR=1</INFO>
+<!--INFO ID="Target" name="-c" value="285.367000+39.280000,rd=1.">
+Constraint SR=1</INFO-->
 
 <!-- TODO: update ID= to name= -->
 
@@ -37,7 +37,7 @@ Constraint SR=1</INFO>
   <DESCRIPTION>117 exoplanets in habitable zone with Kepler DR25 (Bryson+, 2021)</DESCRIPTION>
 
   <INFO ID="ivoid" value="ivo://cds.vizier/j/aj/161/36"/>
-  <INFO ID="publisher" value="doi:10.26093/cds/vizier.51610036"/>
+  <INFO ID="publisher" value="CDS"/>
   <INFO ID="landing_page" value="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/AJ/161/36"/>
 
   <!-- Extra information from Data Oririgin (basic info) -->
@@ -54,7 +54,6 @@ Constraint SR=1</INFO>
 
   <COOSYS ID="J2000_2000.000" system="eq_FK5" equinox="J2000" epoch="2000.000"/>
   <TABLE ID="J_AJ_161_36_table8" name="J/AJ/161/36/table8" ivo-id="ivo://cds.vizier/j/aj/161/36"><!-- ADD IVOID for astropy.table.Table.read() -->
-    <INFO ID="IVOID" value="ivo://cds.vizier/j/aj/161/36"/>
     <DESCRIPTION>Planet candidate properties</DESCRIPTION>
     <!-- Definitions of GROUPs and FIELDs -->
     <FIELD name="_r" ucd="pos.angDistance" datatype="double" width="8" precision="6" unit="deg"><!-- ucd="POS_ANG_DIST_GENERAL" -->

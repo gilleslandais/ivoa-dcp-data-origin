@@ -191,13 +191,14 @@ The IVOA registry which contains metadata for any resources could be used to get
 \textbf{metadata} & \textbf{Description} & \textbf{Level} & \textbf{Dublin Core}\\ \hline
 ivoid             & ivoid identifier to link registry & M &  \\ \hline
 publisher         & data centre that provides the VOTable & M & publisher\\ \hline
-version           & Software version  & & \\ \hline
+version           & Software version (*) & & \\ \hline
 service\_protocol & Protcol access with version & R& \\ \hline
 request           & Request url &  R& \\ \hline
 request\_post     & (POST Request) POST arguments &  & \\ \hline
 request\_date     & Query execution date & R&\\ \hline	
 contact           & email or URL to contact publisher & & \\ \hline	
 landing\_page     & Dataset landing page & & \\ \hline
+\multicolumn{4}{l}{(*) free text, standardized semantic versioning encouraged, see https://semver.org/} \\
 \end{tabular}
 \caption{\xmlel{INFO} names available for specifying the query that
 generated a VOTable}
@@ -434,7 +435,7 @@ Simple Conesearch with its VOTable serialization. Data Origin are specified usin
     <DESCRIPTION>117 exoplanets in habitable zone with Kepler DR25</DESCRIPTION>
 
     <INFO name="ivoid" value="ivo://cds.vizier/j/aj/161/36"/>
-    <INFO name="publisher" value="doi:10.26093/cds/vizier.51610036"/>
+    <INFO name="publisher" value="CDS"/>
     <INFO name="landing_page"
           value="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/AJ/161/36"/>
 
