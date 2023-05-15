@@ -12,7 +12,7 @@
 \author{G.Muench}
 \author{M.Demleitner}
 \author{R.Savalle}
-\author{looking for contributors}
+%\author{looking for contributors}
 %\author{????Fred Offline????}
 
 \editor{G.Landais}
@@ -27,7 +27,7 @@ The goal of the document is to make the Data Origin more visible in the query re
 The document lists metadata required to provide sufficient traceability to end-users in order to improve the understanding
 of the resultsets and enabling its reuse and its citation.
 
-\textbf{NOTE} in work -  template for a possible IVOA note.
+%\textbf{NOTE} in work -  template for a possible IVOA note.
 
 
 \end{abstract}
@@ -71,7 +71,7 @@ tracking using methods available today for their dissemination.
 	\item (Reproducibility) A researcher revisits work they did six months earlier in an ad-hoc fashion and would now like to reproduce it in a more structured fashion. To do that, they need to know, say, which queries against which services, or perhaps which programs, produced the files.
 	
 	Requirement: have the request parameters and a service identification
-	(an ivoid in a narrower VO context, > an access URL beyond that)
+	(an ivoid in a narrower VO context, an access URL beyond that)
 	in Data Origin.
 	
 	\item (Citation) While preparing a publication, a researcher would like to properly cite the software and data that went into their results. They now run a program to extract that information from the digital artefacts going into the publication -- perhaps even in separate parts of citations and acknowledgments.
@@ -82,7 +82,7 @@ tracking using methods available today for their dissemination.
 	
 	Example (American Astronomical Society template):
 	
-	"we searched optical astrometric data of these sources from the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia Collaboration et al. 2021) via the CDS archive"*
+	"we searched optical astrometric data of these sources from the Gaia (Gaia Collaboration et al. 2016) Early Data Release 3 (Gaia Collaboration et al. 2021) via the CDS archive"
 	
 	\item (workflow) Give me a bibliography of everything I've used in the workflow"
 	The VOTable resulting of a session contains homogenized metadata that can be merged and compared.
@@ -110,8 +110,8 @@ The IVOA hence does not guaranty the resources' sustainability.
 The IVOA Registry provides a unique identifier (the ivoid; see \citet{2016ivoa.spec.0523D}) for each resource.  This ivoid has not been considered to be citable in articles, because it is a technical identifier with no provisions for persistence.
 
 Both the Registry's metadata schema and the DataCite
-\citep{std:DataCite31} metadata schema have been
-derived from Dublin Core.  While the extensions differ in detail, it is not
+\citep{std:DataCite40} metadata schema have been
+derived from Dublin Core \citep{std:DUBLINCORE}.  While the extensions differ in detail, it is not
 hard to write mapping between the two metadata schemas.  This can enable
 sustainable citation.
 
@@ -160,12 +160,12 @@ URI is preferred
 \item Query -- In protocols like TAP, the query passed in by the user as
 as single string
 \item Version -- version or date of Data-center software
-\item ... (\textbf{to complete?})
+%\item ... (\textbf{to complete?})
 \end{itemize}
 
 
 \subsection{Condition for citation}
-\todo{I don't know if it is the place to talk about that??}
+%\todo{I don't know if it is the place to talk about that??}
 
 The DOI is the privileged persistent identifier to cite resources.\\
 
@@ -198,7 +198,7 @@ request\_post     & (POST Request) POST arguments &  & \\ \hline
 request\_date     & Query execution date & R&\\ \hline	
 contact           & email or URL to contact publisher & & \\ \hline	
 landing\_page     & Dataset landing page & & \\ \hline
-\multicolumn{4}{l}{(*) free text, standardized semantic versioning encouraged, see https://semver.org/} \\
+\multicolumn{4}{l}{\footnotesize(*) free text, standardized semantic versioning encouraged, see \url{https://semver.org/}} \\
 \end{tabular}
 \caption{\xmlel{INFO} names available for specifying the query that
 generated a VOTable}
@@ -222,7 +222,7 @@ creator            & The person or organization primarily responsible for creati
 editor             & Editor name &  & \\ \hline
 relation\_type     & An identifier of a second resource and its relationship to the
                      present resource.
-                     Controlled vocabulary (\textbf{TODO}) & & relation\\ \hline
+                     Controlled vocabulary (**)& & relation\\ \hline
 related\_resource  & Information about a second resource from which the present resource
                      is derived. The source is an identifier that can be prefixed with the identifier type: eg: bibcode:, doi:, ror: &  & source\\ \hline
 publication\_date  & Date of publication (format ISO 8601) &  R &  \\ \hline
@@ -230,6 +230,7 @@ resource\_date     & Date of the original publication (format ISO 8601) & R & da
 \multicolumn{4}{p{\textwidth}}{\footnotesize(*) The right element	accepts free
 text. However,	it is preferable to provide	a Machine-readable
 Licence.}\\
+\multicolumn{4}{p{\textwidth}}{\footnotesize(**) \url{https://www.ivoa.net/rdf/voresource/relationship_type/}}
 \end{tabular}
 \caption{\xmlel{INFO} names available for specifying information
 related to the origin of the data set(s) a VOTable was generated from}
@@ -320,7 +321,6 @@ title         &Title (3) &M  & resource title\\ \hline
 shortName     &&& Resource short name\\ \hline
 altIdentifier & AlternateIdentifier (11)& R &
               Alternate identifier accepts bibcode, DOI or URL. DOI should be privileged to facilitate citation and link with DataCite or Crossref..eg: DOI \\ \hline
-\multicolumn{4}{l}{(*) terms allowing name and Orcid (AltIdentifier in VOResurce)} \\
 \end{tabular}
 
 \begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
@@ -333,6 +333,7 @@ altIdentifier & AlternateIdentifier (11)& R &
   ?            & PublicationYear (5) & & publication year in data centre\\ \hline
 .version       & Version (15) & R &\\ \hline
 .contact       & &&\\ \hline
+\multicolumn{4}{l}{\footnotesize(*) terms allowing name and Orcid (AltIdentifier in VOResurce)} \\
 \end{tabular}
 
 \begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
@@ -349,14 +350,14 @@ altIdentifier & AlternateIdentifier (11)& R &
 
 \begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
 \multicolumn{4}{|l|}{\textbf{rights}} \\ \hline
-rights   & Rights (16)& R& licence
-          The right element accepts free text. However, it is preferable to provide a machine-readable License. See the list https://spdx.org/licenses/.
+rights   & Rights (16)& R& license
+          The right element accepts free text. However, it is preferable to provide a machine-readable License (*)
          \\ \hline
-.URI     & rightsURI & R& licence URL\\ \hline
-         & rightsIdentifier & & standard licence name .ex CC-by.
+.URI     & rightsURI & R& license URL\\ \hline
+         & rightsIdentifier & & standard license name .ex CC-by.
          Copyright is accepted by FAIR principle. But copyright is only a link to the data producer. It gives the contact point to any users who would like to use data. Copyright is more simple to implement for data-center that provides a copy of original resource, but its use is not well integrated in an interoperable workflow.
          \\ \hline
-
+\multicolumn{4}{p{\textwidth}}{\footnotesize(*) See SPDX list \url{https://spdx.org/licenses/} or Creative Commons licenses \url{https://creativecommons.org}}
 \end{tabular}\\
 
 
@@ -364,11 +365,18 @@ rights   & Rights (16)& R& licence
 
 \textbf{Examples}
 
-Example of rights serialization:
+Examples of rights serialization:
+
 \begin{verbatim}
-<rights rightsURI="https://spdx.org/licenses/CC-BY-4.0.html">
-  Creative Commons Attribution 4.0
+<rights rightsURI="https://spdx.org/licenses/ODbL-1.0.html">
+  ODbL-1.0
 </right>
+\end{verbatim}
+
+\begin{verbatim}
+	<rights rightsURI="https://creativecommons.org/licenses/by/4.0/">
+	Creative Commons Attribution 4.0
+	</right>
 \end{verbatim}
 
 
@@ -401,7 +409,7 @@ Example of Creator:
 
 \section{Acknowledgment template}
 
-Example of acknowledgment that can be extract from the metadata:\\
+Example of acknowledgment that can be retrieved from the metadata:\\
 
 \textbf{Template}:\\
 We extract data published in <related\_resource> (<creator>, <resource\_date>),
