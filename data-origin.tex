@@ -41,11 +41,11 @@ Alberto Accomazzi (ADS), Anne Catherine Raugh (University of Maryland), Rafaele 
 
 \section{Introduction}
 
-Information on the origin of a piece of data is important for end users to understand data, for meaningful data citation and to improved their reusability.  It is a part of provenance, which in turn is as a mandatory criterion in the RDA FAIR definition\todo{Please provide a link in a footnote}.
+Information on the origin of a piece of data is important for end users to understand data, for meaningful data citation and to improved their reusability.  It is a part of provenance, which in turn is as a mandatory criterion in the GOFair\footnote{https://www.go-fair.org/} or RDA FAIR definition\footnote{https://doi.org/10.15497/rda00050}.
 
 The Virtual Observatory (VO) provides an advanced framework to search for, query, and consume astronomical data.  The specification of Data Origin proposed here for VOTable output include both metadata originating at the data producer (e.g, author, space agency, observatory) and at the data centre (publisher) hosting the resource.
 
-At this point, depending of the implementation, users can find the information conveyed in Data Origin in the data centre web pages (landing pages) or in the VO Registry.  For citation, the ADS (NASA Astrophysics Data System) offers comprehensive bibliographic capabilities, including the production of BibTeX records for publications known to ADS.  However, there are no VO standards to communicate this type of information \emph{in instance documents} yet.
+At this point, depending of the implementation, users can find the information conveyed in Data Origin in the data centre web pages (landing pages) or in the VO Registry.  For citation, the ADS (NASA Astrophysics Data System) offers comprehensive bibliographic capabilities, including the production of BibTeX records for publications known to ADS.  However, there are no VO standards to communicate this type of information yet.
 
 A list of basic metadata added reliably findable in a convenient location (i.e.,
 the VOTable produced by a query) will help users to properly cite or
@@ -53,15 +53,19 @@ acknowledge the data resources contributing to new or derived works.
 Tracing Data Origin, from the producer to the query to the production of the respons, also allows an end users to determine the different agents implied in data preservation (authors, data centre, space agencies, journal), which is particularly helpful when debugging.  A typical scenario here is when mirrored data is be subject to potentially differing curation actions in the different publication processes.
 
 The list of metadata items proposed here is designed to meet the needs of basic provenance
-tracking when using current VO protocols.
+tracking when using current VO protocols.\\
+
 
 The remainder of this paper first presents the use cases guiding this
 effort, then briefly lists the sort of metadata Data Origin concerns.
 The core of the specification is in
 section~\ref{sec:data-origin-in-votable}, which
-gives the VOTable serialisation.\todo{As I said, I think I'd rather skip
-sects. 6 and 7 or make them appendices, but if you really want to keep
-them, say something about them here}
+gives the VOTable serialisation.
+
+To complete the picture, the document includes in appendixes, a mapping of Data Origin items with the IVOA registry schema (see appendix~\ref{sec:appendixB})
+and a citation example (appendix \ref{sec:appendixC}) that illustrate how this information can be used.
+
+
 
 \section{Use cases}
 
@@ -128,7 +132,9 @@ HiPS \citep{2017ivoa.spec.0519F} is a more recent protocol which includes for ea
 
 \subsection{Data Origin in IVOA registry}
 The IVOA Registry contains metadata relevant for Data Origin, for instance, authors, publication date, references and alternate identifiers like DOI for each of its resources \citep{2018ivoa.spec.0625P}.\\
+
 e.g.: \xmlel{<altIdentifier>}doi:10.26093/cds/vizier.1355\xmlel{</altIdentifier>} \\
+
 It makes this information available through several interfaces, partly
 hosted by the data centres themselves, partly provided by a central
 infrastructure.
@@ -138,8 +144,8 @@ The IVOA hence does not guaranty the resources' sustainability.
 The IVOA Registry provides a unique identifier (the ivoid; see \citet{2016ivoa.spec.0523D}) for each resource.  This ivoid has not been considered to be citable in articles, because it is a technical identifier with no provisions for persistence.
 
 Both the Registry's metadata schema and the DataCite
-\citep{std:DataCite40} metadata schema have been
-derived from Dublin Core \citep{std:DUBLINCORE}.  While the extensions differ in detail, it is not
+\citep{std:datacite} metadata schema have been
+derived from Dublin Core \citep{std:dublincore}.  While the extensions differ in detail, it is not
 hard to write mapping between the two metadata schemas.  This can enable
 sustainable citation.
 
@@ -245,7 +251,7 @@ queries on evolving datasets, the version or the date must complete the
 information.
 
 \begin{table}
-\begin{tabular}{|l|l|l|l|}  \hline
+\begin{tabular}{|l|p{5cm}|l|l|}  \hline
 \textbf{metadata} & \textbf{Description} & \textbf{Level} & \textbf{Dublin Core}\\ \hline
 ivoid             & ivoid identifier to link registry & R &  \\ \hline
 publisher         & data centre that provides the VOTable & R & publisher\\ \hline
@@ -286,7 +292,7 @@ defined here.
 \begin{tabular}{|l|p{5cm}|l|l|}  \hline
 \textbf{metadata} & \textbf{Description} & \textbf{Level} & \textbf{Dublin Core}\\ \hline
 % removed 23-nov-2023 publication\_id    & Dataset identifier that can be used for citation& M  & identifier\\ \hline
-citation    & Dataset identifier that can be used for citation& R  & identifier\\ \hline
+citation    & Dataset identifier that can be used for citation (e.g. dataset DOI) & R  & identifier\\ \hline
 % removed in 23-nov-2023
 %curation\_level    & Controled vocabulary
 %                   (IVOA rdf, content\_level) &  &  \\ \hline
@@ -330,9 +336,9 @@ related to the origin of the data set(s) a VOTable was generated from}
 \subsection{VOTable serialization}
 
 In this document, we focused on a basic serialization that allows description implying individual tables.
-This output is adapted for protocol like the Simple Conesearch.
+This output is adapted for protocol like the Simple Conesearch \citep{2008ivoa.specQ0222P}.
 
-The basic serialization uses INFO tags to populate Data Origin (see the example of a ConeSearch result in appendix  \ref{appendixA}).
+The basic serialization uses INFO tags to populate Data Origin (see the example of a ConeSearch result in appendix  \ref{sec:appendixA}).
 INFO tags are allowed in VOTable under \xmlel{VOTABLE} or in \xmlel{RESOURCE} elements.
 Thus, it becomes possible to annotate a collection of TABLE which are in different resources.
 
@@ -346,96 +352,13 @@ As a service to human readers, it is recommended to put descriptions, possibly d
 
 
 \section{Data Origin in Registry}
-The ivo-id, now available in VOTable, allows to query the resource metadata which are in the VO registry.\\
+%The ivo-id, now available in VOTable, allows to query the resource metadata which are in the VO registry.\\
+%The registry schema \citep{2018ivoa.spec.0625P} can be mapped with Data Origin items.
+The VO registry schema, which contains most of the Data Origin information, is completed by metadata described in VOResource \citep{2018ivoa.spec.0625P}. 
+This information (assuming it has been filled in by the issuer of the registration) can be requested via the ivo-id now available in VOTable.
 
+The table \ref{tab:voresourcemapping} (see appendix \ref{sec:appendixB}) establishes the mapping between VOResource and Data Origin items.
 
-Expected metadata (VOResource) with their equivalent in Datacite schema (version 4.4) to provide Data Origin in the registry\\
-
-\begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
-\textbf{VOResource} & \textbf{DataCite} & \textbf{Level} & \textbf{Explain} \\ \hline
-identifier    &Identifier (1) &M & ivoid of resource(s) hosted by the service\\ \hline
-title         &Title (3) &M  & resource title\\ \hline
-shortName     &&& Resource short name\\ \hline
-altIdentifier & AlternateIdentifier (11)& R &
-              Alternate identifier accepts bibcode, DOI or URL. DOI should be privileged to facilitate citation and link with DataCite or Crossref..eg: DOI \\ \hline
-\end{tabular}
-
-\begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
-\multicolumn{4}{|l|}{\textbf{curation}} \\ \hline
-publisher     & Publisher (4) & M &publisher (*)\\ \hline
-creator       & Creator (2) & M & author(s) (*)\\ \hline
-contributor   & Contributor & & contributor(s) (*)\\ \hline
-date [Created]& Dates [created] (8)& M & creation date (in data centre)\\ \hline
-date [Updated]& Dates [updated] (8)& M & last modification\\ \hline
-  ?            & PublicationYear (5) & & publication year in data centre\\ \hline
-version       & Version (15) & R &\\ \hline
-contact       & &&\\ \hline
-\multicolumn{4}{l}{\small \footnotesize(*) terms allowing name and Orcid (AltIdentifier in VOResurce)} \\
-\end{tabular}
-
-\begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
-\multicolumn{4}{|l|}{\textbf{content} } \\ \hline
-source        & RelatedIdentifier (12) (*) & R & bibcode\\ \hline
-referenceURL  & & R & landing page\\ \hline
-type          & ResourceType (10)& & Resource type (catalog, etc)\\ \hline
-description   & Description (17)& & abstract\\ \hline
-contentLevel  & & &\\ \hline
-relationShip  & RelatedIdentifiers (12) & R &link to remote resource (Recommended to link Original data centre) \\ \hline
-relationshipType & relationType (12.b) & &\\ \hline
-relatedResource  & RelatedIdentifier (12) & R &\\ \hline
-\multicolumn{4}{l}{\small \footnotesize(*) DataCite sub-properties type=bibcode, relationType=IsSupplementTo} \\
-\end{tabular}
-
-\begin{tabular}{|p{3cm}|p{4cm}|p{1cm}|p{5cm}|} \hline
-\multicolumn{4}{l}{\textbf{rights}} \\ \hline
-rights   & Rights (16)& R& license
-          The right element accepts free text. However, it is preferable to provide a machine-readable License (*)
-         \\ \hline
-URI     & rightsURI & R& license URL\\ \hline
-         & rightsIdentifier & & standard license name .ex CC-by.
-         Copyright is accepted by FAIR principle. But copyright is only a link to the data producer. It gives the contact point to any users who would like to use data. Copyright is more simple to implement for data-centre that provides a copy of original resource, but its use is not well integrated in an interoperable workflow.
-         \\ \hline
-\multicolumn{4}{p{\textwidth}}{\small \footnotesize(*) See SPDX list \url{https://spdx.org/licenses/} or Creative Commons licenses \url{https://creativecommons.org}}
-\end{tabular}\\
-
-
-
-
-\textbf{Examples}
-
-Examples of rights serialization:
-
-\begin{verbatim}
-<rights rightsURI="https://spdx.org/licenses/ODbL-1.0.html">
-  ODbL-1.0
-</rights>
-\end{verbatim}
-
-\begin{verbatim}
-<rights rightsURI="https://creativecommons.org/licenses/by/4.0/">
-  Creative Commons Attribution 4.0
-</rights>
-\end{verbatim}
-
-
-Example or relation ship :
-Cite the original dataset using "source" (to link a bibliographic reference) or "relatedIdentifier" (to link a dataset)
-
-e.g.:
-\begin{verbatim}
-<relationship>
-  <relationshipType>Cites</relationshipType>
-  <relatedResource>doi: 10.5270/esa-qa4lep3 : Gaia DR3 ESA</relatedResource>
-</relationship>
-\end{verbatim}
-
-Example of Creator:
-\begin{verbatim}
-<creator>
-  <name>Bryson S.</name>
-  <altIdentifier>orcid:0000-0003-0081-1797<altIdentifier>
-</creator>
-\end{verbatim}
 
 % may be in an other note?
 %
@@ -445,25 +368,10 @@ Example of Creator:
 % ADD - curation text.. added values, column selection...., extract....
 % list of Data Origin metadata  in registry
 
-\section{Citation Template}
-
-Example of citation template that could be included in authors articles. The template exploits the metadata described in this document:\\
-
-\textbf{Template}:\\
-We extract data published in <related\_resource> (<creator>, <original\_date>),
-via <publisher> services (ivoa resource=<ivoid>, <publication\_date>)
-using <service\_protocol> (version <server\_software>, executed at <request\_date>\\
-
-
-\textbf{Example}:\\
-We extract data published in bibcode:2021AJ....161...36B (Bryson S., 2021),
-via CDS services (ivoa resource=ivo://cds.vizier/j/aj/161/36, 2021-03-16)
-using Simple Cone Search 1.03 (version 7.294, executed at 2022-10-30)
-
 
 
 \appendix
-\section{Appendix, Cone search serialization}\label{appendixA}
+\section{Appendix, Cone search serialization}\label{sec:appendixA}
 Simple Conesearch with its VOTable serialization. Data Origin are specified using  INFO.
 \begin{verbatim}
 <VOTABLE version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -471,8 +379,9 @@ Simple Conesearch with its VOTable serialization. Data Origin are specified usin
 
   <INFO name="protocol" value="Simple Cone Search 1.03"/><!-- URL or text ? -->
   <INFO name="request_date" value="2022-10-30T12:08:00">Query execution date</INFO>
-  <INFO name="request"
-value="https://vizier.cds.unistra.fr/viz-bin/conesearch/J/AJ/161/36/table8?RA=28.4%26DEC=39.3%26SR=1"/>
+  <INFO name="request" value="
+https://vizier.cds.unistra.fr/viz-bin/conesearch/J/AJ/161/36/table8?
+RA=28.4&DEC=39.3&SR=1"/>
   <INFO name="contact" value="cds-question@unistra.fr">Publisher contact</INFO>
   <INFO name="server_software" value="7.294">Software version</INFO>
 
@@ -511,14 +420,124 @@ value="https://vizier.cds.unistra.fr/viz-bin/conesearch/J/AJ/161/36/table8?RA=28
 </VOTABLE>
 \end{verbatim}
 
+\section{Appendix, VOResource and Data origin}\label{sec:appendixB}
+Expected metadata (VOResource) with their equivalent in Datacite schema (version 4.4) to provide Data Origin in the registry.\\
+
+
+%\begin{table}
+\label{tab:voresourcemapping}
+\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{5cm}|} \hline 
+\textbf{VOResource} & \textbf{Data Origin} & \textbf{DataCite} & \textbf{Explain} \\ \hline
+identifier    &ivoid & Identifier & ivoid of resource(s) hosted by the service\\ \hline
+title         & & Title& resource title\\ \hline
+shortName     &&& Resource short name\\ \hline
+altIdentifier &  & AlternateIdentifier&
+              Alternate identifier accepts bibcode, DOI or URL. DOI should be privileged to facilitate citation and link with DataCite or Crossref..eg: DOI \\ \hline
+\end{tabular}
+
+\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{5cm}|} \hline
+\multicolumn{4}{|l|}{\textbf{curation}} \\ \hline
+publisher     & publisher & Publisher &publisher (*)\\ \hline
+creator       & creator & Creator & author(s) (*)\\ \hline
+contributor   & & Contributor & contributor(s) (*)\\ \hline
+date [Created]&  publication\_date  & Dates [created] & creation date (in data centre)\\ \hline
+date [Updated]&  last\_update\_date & Dates [updated] & last modification\\ \hline
+  ?           &  original\_date & PublicationYear & publication year in data centre\\ \hline
+version       & resource\_version & Version &\\ \hline
+contact       & contact &&\\ \hline
+\multicolumn{4}{l}{\small \footnotesize(*) terms allowing name and Orcid (AltIdentifier in VOResurce)} \\
+\end{tabular}
+
+\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{5cm}|} \hline
+\multicolumn{4}{|l|}{\textbf{content} } \\ \hline
+source        & & RelatedIdentifier (*) & bibcode\\ \hline
+referenceURL  & landing\_page &  & Landing page \\ \hline
+type          &  & ResourceType & Resource type (catalog, etc)\\ \hline
+description   &  & Description  & Abstract\\ \hline
+relationShip  &   & RelatedIdentifiers &Link to remote resource (Recommended to link Original data centre) \\ \hline
+relationshipType &  relation\_type & relationType &\\ \hline
+relatedResource  &  related\_resource & RelatedIdentifier & \\ \hline
+\multicolumn{4}{l}{\small \footnotesize(*) DataCite sub-properties type=bibcode, relationType=IsSupplementTo} \\
+\end{tabular}
+
+\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{5cm}|} \hline
+\multicolumn{4}{|l|}{\textbf{rights}} \\ \hline
+rights   & rights & Rights& license
+          The right element accepts free text. However, it is preferable to provide a machine-readable License (*)
+         \\ \hline
+URI     &  rights\_uri& rightsURI & license URL\\ \hline
+        & & rightsIdentifier & standard license name .ex CC-by.
+         Copyright is accepted by FAIR principle. But copyright is only a link to the data producer. It gives the contact point to any users who would like to use data. Copyright is more simple to implement for data-centre that provides a copy of original resource, but its use is not well integrated in an interoperable workflow.
+         \\ \hline
+\multicolumn{4}{p{\textwidth}}{\small \footnotesize(*) See SPDX list \url{https://spdx.org/licenses/} or Creative Commons licenses \url{https://creativecommons.org}}
+\end{tabular}\\
+%\caption{Expected metadata (VOResource) with their equivalent in Datacite schema (version 4.4) to provide Data Origin in the registry.}
+%\end{table}
+
+
+
+
+%%\textbf{Examples}
+%%
+%%Examples of rights serialization:
+%%
+%%\begin{verbatim}
+%%<rights rightsURI="https://spdx.org/licenses/ODbL-1.0.html">
+%%  ODbL-1.0
+%%</rights>
+%%\end{verbatim}
+%%
+%%\begin{verbatim}
+%%<rights rightsURI="https://creativecommons.org/licenses/by/4.0/">
+%%  Creative Commons Attribution 4.0
+%%</rights>
+%%\end{verbatim}
+%%
+%%
+%%Example or relation ship :
+%%Cite the original dataset using "source" (to link a bibliographic reference) or "relatedIdentifier" (to link a dataset)
+%%
+%%e.g.:
+%%\begin{verbatim}
+%%<relationship>
+%%  <relationshipType>Cites</relationshipType>
+%%  <relatedResource>doi: 10.5270/esa-qa4lep3 : Gaia DR3 ESA</relatedResource>
+%%</relationship>
+%%\end{verbatim}
+%%
+%%Example of Creator:
+%%\begin{verbatim}
+%%<creator>
+%%  <name>Bryson S.</name>
+%%  <altIdentifier>orcid:0000-0003-0081-1797<altIdentifier>
+%%</creator>
+%%\end{verbatim}
+
+
+
+\section{Appendix, Citation Template} \label{sec:appendixC}
+
+Example of citation template that could be included in authors articles. The template exploits the metadata described in this document:\\
+
+\textbf{Template}:\\
+We extract data published in <related\_resource> (<creator>, <original\_date>),
+via <publisher> services (ivoa resource=<ivoid>, <publication\_date>)
+using <service\_protocol> (version <server\_software>, executed at <request\_date>\\
+
+
+\textbf{Example}:\\
+We extract data published in bibcode:2021AJ....161...36B (Bryson S., 2021),
+via CDS services (ivoa resource=ivo://cds.vizier/j/aj/161/36, 2021-03-16)
+using Simple Cone Search 1.03 (version 7.294, executed at 2022-10-30)
+
+
 \section{Appendix, Changes from Previous Versions}
 
 %No previous versions yet.
 % these would be subsections "Changes from v. WD-..."
 % Use itemize environments.
-\subsection{Data Origin in the VO Version 1.0}
+%\subsection{Data Origin in the VO Version 1.0}
 \begin{itemize}
-\item Re-organize the section 4 and move items information into section 5.
 \item Changed vocabulary: \\
   \textit{resource\_date} becomes \textit{last\_update\_date},
   \textit{rights} and \textit{copyrights} becomes \textit{rights\_uri} and \textit{rights} (VOResource),
@@ -528,6 +547,7 @@ value="https://vizier.cds.unistra.fr/viz-bin/conesearch/J/AJ/161/36/table8?RA=28
 \item New item: \textit{original\_date}
 \item Clarify date items and multiple INFO in VOTable.
 \item Propose added human-readable text for VOTable serialization.
+\item Language smoothing 
 \end{itemize}
 
 \bibliography{ivoatex/ivoabib,ivoatex/docrepo}
