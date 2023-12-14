@@ -274,7 +274,7 @@ publisher         & Data centre that produced the VOTable & R & publisher\\ \hli
 server\_software  & Software version (*) & & \\ \hline
 service\_protocol & IVOID of the protocol through which the data was
 retrieved& R& \\ \hline
-request           & Request parameters (**)&  R& \\ \hline
+request           & Full request URL including a query string (**)&  R& \\ \hline
 query             & An input query in a formal language (e.g, ADQL) &  & \\ \hline
 % removed in 23-nov-2023
 %request\_post     & (POST Request) POST arguments &  & \\ \hline
@@ -286,7 +286,8 @@ landing\_page     & Dataset landing page & & \\ \hline
 encouraged to follow \citet{note:opid} in this item} \\
 \multicolumn{4}{p{\textwidth}}{\footnotesize(**) For ``Simple''
 protocols (regardless of the HTTP method), put the
-application/x-www-form-urlencoded form of the query parameters here.
+application/x-www-form-urlencoded form of the query parameters in the
+query part of the URL here.
 More complex scenarios like UWS are not covered by this document.}
 \end{tabular}\hss}
 \caption{\xmlel{INFO} names available for specifying the query that
@@ -368,7 +369,8 @@ Thus, it becomes possible to annotate a collection of TABLE which are in differe
 This specification at this point does not constrain the multiplicities of individual INFO items, and clients should not fail hard if any given INFO item occurs multiple times.
 
 Complex queries (for instance, resulting from JOIN-s ADQL) need an advanced output serialization to gather metadata by resource.
-Mechanisms to manage this requirement are being developed in IVOA.
+Mechanisms to manage this requirement are being developed in IVOA
+(MIVOT).
 The mechanisms defined here are generally still applicable in these
 cases, but the authors acknowledge that they are certainly stretched to
 their limits there.
