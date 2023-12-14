@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{listings}
+\lstloadlanguages{XML}
+\lstset{flexiblecolumns=true,tagstyle=\ttfamily, showstringspaces=False}
+\usepackage{tikz}
+
+\newcommand\tikzmark[1]{%
+  \tikz[remember picture,overlay]\node (#1){};}
+
+\begin{document}
+\pagestyle{empty}
+\hbox{%
+\begin{lstlisting}[language=XML,basicstyle=\fontsize{8pt}{10pt},
+	escapechar=^]
+<ri:Resource xsi:type="vs:CatalogService">
+  <title>Example Data For Identifiers in VOResource</title>
+  <identifier>ivo://org.gavo.dc/hsoy/q/q^\tikzmark{ivoid}^</identifier>
+  <altIdentifier>doi:10.555/fictional-resource^\tikzmark{recdoi}^</altIdentifier>
+  <curation>
+    <publisher>E.X Ample Data Providers</publisher>
+    <creator altIdentifier="https://orcid.org/^\tikzmark{orcid}^0000-0001-2345-6789">
+      <name>Uthor, A.</name>
+     </creator>
+    <contact>...</contact>
+  </curation>
+  <content>
+    ...
+    <source format="bibcode">2018ivoa^\tikzmark{bibcode}^.spec.0625P</source>
+    <relationship>
+      <relationshipType>IsDerivedFrom</relationshipType>
+      <relatedResource altIdentifier="doi:10.555/^\tikzmark{reldoi}^fictional-data"
+        >Generic non-VO data</relatedResource>
+    </relationship>
+  </content>
+</ri:Resource>
+\end{lstlisting}%
+\hfil
+\begin{tikzpicture}[remember picture,overlay,
+expbox/.style={rectangle,rounded corners=2mm,
+	top color=blue!20,bottom color=blue!20,text width=3cm},
+exparrow/.style={line width=1mm,opacity=0.5,color=blue!40}
+]
+\node[expbox] at (0, 3) (ivoid-exp){The VO-internal IVOID};
+\draw [exparrow] (ivoid-exp) to (ivoid);
+\node[expbox] at (0, 0.8) (recdoi-exp){A DOI describing the full record};
+\draw [exparrow] (recdoi-exp) to (recdoi.south);
+\node[expbox] at (-5.5, 0.4) (orcid-exp){An ORCID for an author};
+\draw [exparrow] (orcid-exp) to (orcid.south);
+\node[expbox] at (-2, -0.3) (bibcode-exp){A Bibcode to cite};
+\draw [exparrow] (bibcode-exp) to (bibcode.north);
+\node[expbox] at (-2, -3) (reldoi-exp){A DOI for VO-external data};
+\draw [exparrow] (reldoi-exp) to (reldoi.south);
+\end{tikzpicture}%
+}
+\end{document}

@@ -78,9 +78,9 @@ Derived requirements:
 
 \begin{itemize}
 \item Contact information for producers must be present.
-	
+
 \item Researchers would like to identify clearly defined roles in well-known places regardless of the service which generated the result.
-		
+
 \item When data provided by the service is derived from external resources, these external resources are clearly identified.  In that case, additional curation applied by the publisher can be detected.
 \end{itemize}
 
@@ -90,10 +90,10 @@ For instance, a table published in a journal or by a space agency is also hosted
 \subsection{Reproducibility}
 
 A researcher revisits work they did six months earlier in an ad-hoc fashion and would now like to reproduce it in a more structured way. To do that, they need to know, say, which queries against which services, or perhaps which programs, produced the files.
-	
+
 Derived requirement: The request parameters and a service identification
 (perhaps an ivoid in a narrower VO context, an access URL beyond that) must be available.
-	
+
 \subsection{Citation}
 \label{sec:req-citation}
 
@@ -110,8 +110,8 @@ We searched optical astrometric data of these sources from the Gaia (Gaia Collab
 Derived requirement: The Data Origin must indicate requests for citation
 and/or acknowledgment in a machine-readable way, preferably in a way
 that machines can generate BibTeX for whatever they specify.
-	
-	
+
+
 \subsection{Workflow bibliography}
 
 A resarcher has used a workflow engine to solve a complex science
@@ -130,12 +130,21 @@ Neither VOTable \citep{2019ivoa.spec.1021O} nor IVOA data access protocols at th
 
 HiPS \citep{2017ivoa.spec.0519F} is a more recent protocol which includes for each Dataset a list of standardized metadata. HiPS metadata includes authors, publication year, data centre identifier or licenses.
 
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{fig-ext-ids.pdf}
+\caption{Usage of DOIs, ORCIDs, and Bibcodes in a sketch of a
+VOResource instance document.}
+\label{fig:extids}
+\end{figure}
 
 \subsection{Data Origin in IVOA Registry}
 The IVOA Registry contains metadata relevant for Data Origin such as authors,
 publication dates,
-or relationships to other resources, partly using external identifier schemes
-like DOIs, ORCIDs, or Bibcodes.  The  metadata schema is mainly defined by
+or relationships to other resources.  Of particular relevance for Data
+Origin are these latter relationships using external identifier schemes
+more persistent than thei IVOA's own: DOIs, ORCIDs, or Bibcodes (see
+Fig.~\ref{fig:extids}).  The  metadata schema is mainly defined by
 VOResource \citep{2018ivoa.spec.0625P} and VODataService
 \citep{2021ivoa.spec.1102D}, which also define an XML serialisation for it.
 
@@ -270,8 +279,8 @@ query             & An input query in a formal language (e.g, ADQL) &  & \\ \hli
 % removed in 23-nov-2023
 %request\_post     & (POST Request) POST arguments &  & \\ \hline
 % end
-request\_date     & Query execution date & R&\\ \hline	
-contact           & Email or URL to contact publisher & & \\ \hline	
+request\_date     & Query execution date & R&\\ \hline
+contact           & Email or URL to contact publisher & & \\ \hline
 landing\_page     & Dataset landing page & & \\ \hline
 \multicolumn{4}{p{\textwidth}}{\vskip 2pt\footnotesize(*) Operators are
 encouraged to follow \citet{note:opid} in this item} \\
@@ -370,7 +379,7 @@ As a service to human readers, it is recommended to put descriptions, possibly d
 \section{Data Origin in Registry}
 %The ivo-id, now available in VOTable, allows to query the resource metadata which are in the VO registry.\\
 %The registry schema \citep{2018ivoa.spec.0625P} can be mapped with Data Origin items.
-The VO registry schema, which contains most of the Data Origin information, is completed by metadata described in VOResource \citep{2018ivoa.spec.0625P}. 
+The VO registry schema, which contains most of the Data Origin information, is completed by metadata described in VOResource \citep{2018ivoa.spec.0625P}.
 This information (assuming it has been filled in by the issuer of the registration) can be requested via the ivo-id now available in VOTable.
 
 The table \ref{tab:voresourcemapping} (see appendix \ref{sec:appendixB}) establishes the mapping between VOResource and Data Origin items.
@@ -441,7 +450,7 @@ Expected metadata (VOResource) with their equivalent in Datacite schema (version
 
 %\begin{table}
 \label{tab:voresourcemapping}
-\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{5cm}|} \hline 
+\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{5cm}|} \hline
 \textbf{VOResource} & \textbf{Data Origin} & \textbf{DataCite} & \textbf{Explain} \\ \hline
 identifier    &ivoid & Identifier & ivoid of resource(s) hosted by the service\\ \hline
 title         & & Title& resource title\\ \hline
@@ -562,7 +571,7 @@ using Simple Cone Search 1.03 (version 7.294, executed at 2022-10-30)
 \item New item: \textit{original\_date}
 \item Clarify date items and multiple INFO in VOTable.
 \item Propose added human-readable text for VOTable serialization.
-\item Language smoothing 
+\item Language smoothing
 \end{itemize}
 
 \bibliography{ivoatex/ivoabib,ivoatex/docrepo,local}
