@@ -1,7 +1,8 @@
 # ivoatex Makefile.  The ivoatex/README for the targets available.
 
 %.pdf: %.texfig
-	pdflatex -shell-escape $^
+	pdflatex $^
+	pdflatex $^
 	mv $@ tmp.$$$$; pdfcrop tmp.$$$$ $@; rm -f tmp.$$$$
 
 # short name of your document (edit $DOCNAME.tex; would be like RegTAP)
