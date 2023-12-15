@@ -143,7 +143,7 @@ The IVOA Registry contains metadata relevant for Data Origin such as authors,
 publication dates,
 or relationships to other resources.  Of particular relevance for Data
 Origin are these latter relationships using external identifier schemes
-more persistent than thei IVOA's own: DOIs, ORCIDs, or Bibcodes (see
+more persistent than their IVOA's own: DOIs, ORCIDs, or Bibcodes (see
 Fig.~\ref{fig:extids}).  The  metadata schema is mainly defined by
 VOResource \citep{2018ivoa.spec.0625P} and VODataService
 \citep{2021ivoa.spec.1102D}, which also define an XML serialisation for it.
@@ -173,25 +173,27 @@ pieces of data origin are unsuitable for a general metadata schema like
 DataCite's.
 
 \subsection{Data Origin and Provenance}
-The Provenance \citep{2020ivoa.spec.0411S} and Dataset Data Models can
-be used to express Data Origin.
+%The Provenance \citep{2020ivoa.spec.0411S} and Dataset Data Models can
+%be used to express Data Origin.
 
-The Provenance Data Model (ProvDM) is based on Entities, Agents and Activities as defined in the W3C Provenance model. The model's main focus is the detailed documentation of workflows.
+The Provenance Data Model \citep{2020ivoa.spec.0411S} is based on Entities, Agents and Activities as defined in the W3C Provenance model. The model's main focus is the detailed documentation of workflows.
 
 For the serialisation of ProvDM instances within VOTables, MIVOT \citep{2023ivoa.spec.0620M} is available.  At this point, however, the relatively complex model and many free parameters for instance serialisation are obstacles for a wide and direct adoption of ProvDM+MIVOT to represent Data Origin, in particular when compared to the very straightforward mechanisms proposed here.
 
 
-``Last-Step-Provenance'' is a Provenance extension currently under discussion which would define a list of metadata corresponding to Data Origin.  Its output will not be recursive and could be easily serialized in a table.\todo{If we write this here, everyone will ask: Well, so why don't we wait for that?  Perhaps we ought to just drop this?}
-
+%``Last-Step-Provenance'' is a Provenance extension currently under discussion which would define a list of metadata corresponding to Data Origin.  Its output will not be recursive and could be easily serialized in a table.\todo{If we write this here, everyone will ask: Well, so why don't we wait for that?  Perhaps we ought to just drop this?}
+Other initiatives, in working progress, such as ``DatasetDM'', or 
+``Last-Step-Provenance'' show the growing interest of adding a piece of 
+Provenance. The metadata listed in Data Origin can be a reference for current
+and future models interested by the information.
 
 \subsection{DALI}
 DALI \citep{2017ivoa.spec.0517D} defines common conventions for all
-modern IVOA data access protocols.  A part of it defines in-band
-signalling of error conditions or overflows  -- an important part of
-Data Origin -- for VOTables.
+modern IVOA data access protocols.  
+%A part of it defines in-band signalling of error conditions or overflows  -- an important part of Data Origin -- for VOTables.
 
 It also defines bespoke names for \xmlel{INFO} elements used to convey
-Data Origin-type metadata, in particular \emph{citation}.  In a sense,
+Data Origin-type metadata, in particular \emph{citation} and \emph{standardID}.  In a sense,
 this specification is an extension of the mechanism defined in DALI.
 
 \section{Expected Data Origin}
@@ -281,7 +283,7 @@ query             & An input query in a formal language (e.g, ADQL) &  & \\ \hli
 % end
 request\_date     & Query execution date & R&\\ \hline
 contact           & Email or URL to contact publisher & & \\ \hline
-landing\_page     & Dataset landing page & & \\ \hline
+reference\_url     & Dataset landing page & & \\ \hline % previously landing_page 
 \multicolumn{4}{p{\textwidth}}{\vskip 2pt\footnotesize(*) Operators are
 encouraged to follow \citet{note:opid} in this item} \\
 \multicolumn{4}{p{\textwidth}}{\footnotesize(**) For ``Simple''
@@ -330,11 +332,17 @@ creator            & \raggedright The person(s) mainly involved in the
 creation of the resource; generally, the author(s).
                    & R & creator\\ \hline
 editor             & Editor name &  & \\ \hline
-relation\_type     & An identifier of a second resource and its relationship to the
-                     present resource.
-                     Controlled vocabulary (**)& & relation\\ \hline
-related\_resource  & Information about a second resource from which the present resource
-                     is derived. The source is an identifier that can be prefixed with the identifier type: eg: bibcode:, doi:, ror: &  & source\\ \hline
+% removed 15-dec-2023 to use cites or is_derived_from
+%relation\_type     & An identifier of a second resource and its relationship to the
+%                     present resource.
+%                     Controlled vocabulary (**)& & relation\\ \hline
+%related\_resource  & Information about a second resource from which the present resource
+%                     is derived. The source is an identifier that can be prefixed with the identifier type: eg: bibcode:, doi:, ror: &  & source\\ \hline
+article            & Bibcode or DOI of a reference article & & relation\\ \hline
+cites              & An Identifier (ivoid, DOI, bibcode) of second resource
+                     using relation type ``cites'' (**)& & relation\\ \hline
+is\_derived\_from  & An Identifier (ivoid, DOI, bibcode) of second resource
+                     using relation type ``is\_derived\_from'' (**)& & relation\\ \hline
 % remove 23-nov-2023
 %publication\_date  & Date of publication (DALI timestamp) &  R &  \\ \hline
 %resource\_date     & Date of the original publication (DALI timestamp) & R & date\\ \hline
@@ -427,10 +435,10 @@ RA=28.4&DEC=39.3&SR=1"/>
         Identifier that can be used for citation
     </INFO>
     <INFO name="last_update_date" value="2022-10-07">Last Data Centre update</INFO>
-    <INFO name="rights"
+    <INFO name="rights_uri"
           value="https://cds.unistra.fr/vizier-org/licences_vizier.html"/>
     <INFO name="creator" value="Bryson S.">Author</INFO><!-- ORCID ? -->
-    <INFO name="related_resource" value="2021AJ....161...36B">
+    <INFO name="cites" value="2021AJ....161...36B">
         Reference article
     </INFO>
     <INFO name="editor" value="Astronomical Journal">
@@ -476,13 +484,13 @@ contact       & contact &&\\ \hline
 
 \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{5cm}|} \hline
 \multicolumn{4}{|l|}{\textbf{content} } \\ \hline
-source        & & RelatedIdentifier (*) & bibcode\\ \hline
-referenceURL  & landing\_page &  & Landing page \\ \hline
+source        & article & RelatedIdentifier (*) & bibcode\\ \hline
+referenceURL  & reference\_url &  & Landing page \\ \hline
 type          &  & ResourceType & Resource type (catalog, etc)\\ \hline
 description   &  & Description  & Abstract\\ \hline
 relationShip  &   & RelatedIdentifiers &Link to remote resource (Recommended to link Original data centre) \\ \hline
-relationshipType &  relation\_type & relationType &\\ \hline
-relatedResource  &  related\_resource & RelatedIdentifier & \\ \hline
+relationshipType & cites, is\_derived\_from & relationType &\\ \hline
+relatedResource  & cites, is\_derived\_from & RelatedIdentifier & \\ \hline
 \multicolumn{4}{l}{\small \footnotesize(*) DataCite sub-properties type=bibcode, relationType=IsSupplementTo} \\
 \end{tabular}
 
@@ -546,7 +554,7 @@ URI     &  rights\_uri& rightsURI & license URL\\ \hline
 Example of citation template that could be included in authors articles. The template exploits the metadata described in this document:\\
 
 \textbf{Template}:\\
-We extract data published in <related\_resource> (<creator>, <original\_date>),
+We extract data published in <article> (<creator>, <original\_date>),
 via <publisher> services (ivoa resource=<ivoid>, <publication\_date>)
 using <service\_protocol> (version <server\_software>, executed at <request\_date>\\
 
@@ -569,8 +577,12 @@ using Simple Cone Search 1.03 (version 7.294, executed at 2022-10-30)
   \textit{rights} and \textit{copyrights} becomes \textit{rights\_uri} and \textit{rights} (VOResource),
   \textit{version} becomes \textit{server\_software} (https://ivoa.net/documents/Notes/softid/),
   \textit{publication\_id} becomes \textit{citation} (DALI)
-\item Remove \textit{curation\_level}, \textit{request\_post}, \textit{rights\_type}
-\item New item: \textit{original\_date}
+  \textit{landing\_page} becomes \textit{reference\_url} (VOResource)
+  \textit{relation\_type} and \textit{related\_resource} to specific relation : \textit{cites} and \textit{is\_derived\_from} (VOResource)
+\item Remove \textit{curation\_level}, 
+      \textit{request\_post}, 
+      \textit{rights\_type}
+\item New item: \textit{original\_date}, \textit{article}
 \item Clarify date items and multiple INFO in VOTable.
 \item Propose added human-readable text for VOTable serialization.
 \item Language smoothing

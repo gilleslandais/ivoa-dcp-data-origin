@@ -1,16 +1,22 @@
-\documentclass{article}
+%\documentclass{article}
+\documentclass[a5paper,landscape]{article}
 \usepackage{listings}
 \lstloadlanguages{XML}
 \lstset{flexiblecolumns=true,tagstyle=\ttfamily, showstringspaces=False}
 \usepackage{tikz}
+\usepackage[pass]{geometry}
+
 
 \newcommand\tikzmark[1]{%
   \tikz[remember picture,overlay]\node (#1){};}
 
 \begin{document}
 \pagestyle{empty}
+\newgeometry{margin=0pt}
+
 \hbox{%
-\begin{lstlisting}[language=XML,basicstyle=\fontsize{8pt}{10pt},
+%\begin{lstlisting}[language=XML,basicstyle=\fontsize{8pt}{10pt},
+\begin{lstlisting}[language=XML, basicstyle=\ttfamily\large,
 	escapechar=^]
 <ri:Resource xsi:type="vs:CatalogService">
   <title>Example Data For Identifiers in VOResource</title>
