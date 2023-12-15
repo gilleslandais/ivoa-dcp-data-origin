@@ -1,5 +1,9 @@
 # ivoatex Makefile.  The ivoatex/README for the targets available.
 
+%.pdf: %.texfig
+	pdflatex -shell-escape $^
+	mv $@ tmp.$$$$; pdfcrop tmp.$$$$ $@; rm -f tmp.$$$$
+
 # short name of your document (edit $DOCNAME.tex; would be like RegTAP)
 DOCNAME = data-origin
 
@@ -18,19 +22,27 @@ AUTHOR_EMAIL=gilles.landais@unistra.fr
 
 # Source files for the TeX document (but the main file must always
 # be called $(DOCNAME).tex
-SOURCES = $(DOCNAME).tex 
+SOURCES = $(DOCNAME).tex
 
 # List of image files to be included in submitted package (anything that
 # can be rendered directly by common web browsers)
-FIGURES = 
+FIGURES =
 
 # List of PDF figures (figures that must be converted to pixel images to
 # work in web browsers).
-VECTORFIGURES = 
+VECTORFIGURES = fig-ext-ids.pdf
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
-AUX_FILES = 
+AUX_FILES =
 
 IVOA_GROUP= Data Curation and Preservation
 
-include ivoatex/Makefile
+-include ivoatex/Makefile
+
+ivoatex/Makefile:
+	@echo "*** ivoatex submodule not found.  Initialising submodules."
+	@echo
+	git submodule update --init
+
+test:
+	@echo "No tests defined yet"
