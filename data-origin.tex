@@ -283,7 +283,6 @@ query             & An input query in a formal language (e.g, ADQL) &  & \\ \hli
 % end
 request\_date     & Query execution date & R&\\ \hline
 contact           & Email or URL to contact publisher & & \\ \hline
-reference\_url     & Dataset landing page & & \\ \hline % previously landing_page 
 \multicolumn{4}{p{\textwidth}}{\vskip 2pt\footnotesize(*) Operators are
 encouraged to follow \citet{note:opid} in this item} \\
 \multicolumn{4}{p{\textwidth}}{\footnotesize(**) For ``Simple''
@@ -317,6 +316,7 @@ defined here.
 \textbf{\vrule width0pt height 12pt depth 7pt Key} & \textbf{Description} & \textbf{Level} & \textbf{Dublin Core}\\ \hline
 % removed 23-nov-2023 publication\_id    & Dataset identifier that can be used for citation& M  & identifier\\ \hline
 citation    & Dataset identifier that can be used for citation (e.g. dataset DOI) & R  & identifier\\ \hline
+reference\_url     & Dataset landing page & & \\ \hline % previously landing_page 
 % removed in 23-nov-2023
 %curation\_level    & Controled vocabulary
 %                   (IVOA rdf, content\_level) &  &  \\ \hline
@@ -331,7 +331,7 @@ rights             & Licence or Copyright text &  & rights\\ \hline
 creator            & \raggedright The person(s) mainly involved in the
 creation of the resource; generally, the author(s).
                    & R & creator\\ \hline
-editor             & Editor name &  & \\ \hline
+editor             & Editor name (article)&  & \\ \hline
 % removed 15-dec-2023 to use cites or is_derived_from
 %relation\_type     & An identifier of a second resource and its relationship to the
 %                     present resource.
@@ -411,7 +411,7 @@ Simple Conesearch with its VOTable serialization. Data Origin are specified usin
 <VOTABLE version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="http://www.ivoa.net/xml/VOTable/v1.1" xsi:schemaLocation=...>
 
-  <INFO name="protocol" value="Simple Cone Search 1.03"/><!-- URL or text ? -->
+  <INFO name="server_protocol" value="Simple Cone Search 1.03"/><!-- URL or text ? -->
   <INFO name="request_date" value="2022-10-30T12:08:00">Query execution date</INFO>
   <INFO name="request" value="
 https://vizier.cds.unistra.fr/viz-bin/conesearch/J/AJ/161/36/table8?
