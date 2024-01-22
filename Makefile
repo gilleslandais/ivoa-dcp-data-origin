@@ -12,7 +12,7 @@ DOCNAME = data-origin
 DOCVERSION = 1.1
 
 # Publication date, ISO format; update manually for "releases"
-DOCDATE = 2023-23-11
+DOCDATE = 2024-01-22
 
 # What is it you're writing: NOTE, WD, PR, REC, PEN, or EN
 DOCTYPE = NOTE
