@@ -27,11 +27,11 @@ SOURCES = $(DOCNAME).tex
 
 # List of image files to be included in submitted package (anything that
 # can be rendered directly by common web browsers)
-FIGURES =
+FIGURES =fig-ext-ids.pdf
 
 # List of PDF figures (figures that must be converted to pixel images to
 # work in web browsers).
-VECTORFIGURES = fig-ext-ids.pdf
+VECTORFIGURES = 
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
 AUX_FILES =

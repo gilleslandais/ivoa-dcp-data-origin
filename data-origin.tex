@@ -11,7 +11,7 @@
 
 %\author[????URL????]{G.Landais}
 \author{G.Landais}
-\author{G.Muench}
+\author{A.Muench}
 \author{M.Demleitner}
 \author{R.Savalle}
 %\author{looking for contributors}
@@ -20,7 +20,7 @@
 \editor{G.Landais}
 
 %\previousversion{NOTE-20230522}
-\previousversion{}
+\previousversion{NOTE-DataOrigin-1.0-20230522}
 %\previousversion{This is the first public release}
 
 
@@ -29,7 +29,7 @@
 Data Origin in the VO specifies a set of metadata items that define basic
 provenance information, as well as their representation in documents produced
 by Virtual Observatory (VO) services.  This will improve traceability for VO
-users, help them understan result sets and facilitate data reuse and citation.
+users, help them to understand result sets and facilitate data reuse and citation.
 
 \end{abstract}
 
@@ -411,7 +411,7 @@ Simple Conesearch with its VOTable serialization. Data Origin are specified usin
 <VOTABLE version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="http://www.ivoa.net/xml/VOTable/v1.1" xsi:schemaLocation=...>
 
-  <INFO name="server_protocol" value="Simple Cone Search 1.03"/><!-- URL or text ? -->
+  <INFO name="server_protocol" value="ivo://ivoa.net/std/ConeSearch"/>
   <INFO name="request_date" value="2022-10-30T12:08:00">Query execution date</INFO>
   <INFO name="request" value="
 https://vizier.cds.unistra.fr/viz-bin/conesearch/J/AJ/161/36/table8?
