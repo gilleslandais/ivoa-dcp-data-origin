@@ -48,23 +48,23 @@ The Virtual Observatory (VO) provides an advanced framework to search for, query
 
 At this point, depending of the implementation, users can find the information conveyed in Data Origin in the data centre web pages (landing pages) or in the VO Registry.  For citation, the ADS (NASA Astrophysics Data System) offers comprehensive bibliographic capabilities, including the production of BibTeX records for publications known to ADS.  However, there are no VO standards to communicate this type of information yet.
 
-A list of basic metadata added reliably findable in a convenient location (i.e.,
+A list of basic added metadata, reliably findable in a convenient location (i.e.,
 the VOTable produced by a query) will help users to properly cite or
 acknowledge the data resources contributing to new or derived works.
-Tracing Data Origin, from the producer to the query to the production of the respons, also allows an end users to determine the different agents implied in data preservation (authors, data centre, space agencies, journal), which is particularly helpful when debugging.  A typical scenario here is when mirrored data is be subject to potentially differing curation actions in the different publication processes.
+Tracing Data Origin, from the producer of the query to the production of the respons, also allows an end users to determine the different agents implied in data preservation (authors, data centre, space agencies, journal), which is particularly helpful when debugging.  A typical scenario here is when mirrored data is the subject to potentially differing curation actions in the different publication processes.
 
 The list of metadata items proposed here is designed to meet the needs of basic provenance
 tracking when using current VO protocols.\\
 
 
-The remainder of this paper first presents the use cases guiding this
-effort, then briefly lists the sort of metadata Data Origin concerns.
+The remainder of this note first presents the use cases guiding this
+effort, then briefly lists the kind of metadata Data Origin concerns.
 The core of the specification is in
 section~\ref{sec:data-origin-in-votable}, which
-gives the VOTable serialisation.
+describes the VOTable serialisation.
 
-To complete the picture, the document includes in appendixes, a mapping of Data Origin items with the IVOA registry schema (see appendix~\ref{sec:appendixB})
-and a citation example (appendix \ref{sec:appendixC}) that illustrate how this information can be used.
+To complete the picture, the document includes in appendixes, a mapping of Data Origin items with the IVOA Registry schema (see appendix~\ref{sec:appendixB})
+and a citation example (appendix \ref{sec:appendixC}) that illustrates how this information can be used.
 
 
 
@@ -79,9 +79,9 @@ Derived requirements:
 \begin{itemize}
 \item Contact information for producers must be present.
 
-\item Researchers would like to identify clearly defined roles in well-known places regardless of the service which generated the result.
+\item Researchers would like to clearly identify defined roles in well-known places regardless of the service which generated the result.
 
-\item When data provided by the service is derived from external resources, these external resources are clearly identified.  In that case, additional curation applied by the publisher can be detected.
+\item When data provided by the service is derived from external resources, those external resources are clearly identified.  In that case, additional curation applied by the publisher can be detected.
 \end{itemize}
 
 For instance, a table published in a journal or by a space agency is also hosted in multiple data centre. The details of the table schema may depend on the data centre, which can add associated data, enrich metadata, or make a sub-selection of columns.
@@ -109,12 +109,12 @@ We searched optical astrometric data of these sources from the Gaia (Gaia Collab
 
 Derived requirement: The Data Origin must indicate requests for citation
 and/or acknowledgment in a machine-readable way, preferably in a way
-that machines can generate BibTeX for whatever they specify.
+that machines can generate BibTeX entries for whatever they specify.
 
 
 \subsection{Workflow bibliography}
 
-A resarcher has used a workflow engine to solve a complex science
+A researcher has used a workflow engine to solve a complex science
 problem.  They now want to create a bibliography of everything that was
 used to obtain the end result of the computation.
 
@@ -126,7 +126,7 @@ might be useful.
 
 \section{State of the Art}
 
-Neither VOTable \citep{2019ivoa.spec.1021O} nor IVOA data access protocols at this point provide standard facilities for conveying Data Origin information. While protocols such as TAP \citep{2019ivoa.spec.0927D} have standard interfaces to retrieve table metadata (e.g., unit, type and description of columns) or metadata on service endpoints (``capabilities'') by virtue of providing VOSI \citep{2017ivoa.spec.0524G} endpoints, for basic metadata like authors or publication dates clients have to consult the VO Registry.  Even that may be difficult, because there is not even a standard way to obtain an identifier from a service itself.
+Neither VOTable \citep{2019ivoa.spec.1021O} nor IVOA data access protocols at this point provide standard facilities for conveying Data Origin information. While protocols such as TAP \citep{2019ivoa.spec.0927D} have standard interfaces to retrieve table metadata (e.g., unit, type and description of columns) or metadata on service endpoints (``capabilities'') by virtue of providing VOSI \citep{2017ivoa.spec.0524G} endpoints, for basic metadata like authors or publication dates,  clients have to query the VO Registry.  Even that may be difficult, because there is not even a standard way to obtain an identifier from a service itself.
 
 HiPS \citep{2017ivoa.spec.0519F} is a more recent protocol which includes for each Dataset a list of standardized metadata. HiPS metadata includes authors, publication year, data centre identifier or licenses.
 
@@ -142,7 +142,7 @@ VOResource instance document.}
 The IVOA Registry contains metadata relevant for Data Origin such as authors,
 publication dates,
 or relationships to other resources.  Of particular relevance for Data
-Origin are these latter relationships using external identifier schemes
+Origin are those latter relationships using external identifier schemes
 more persistent than their IVOA's own: DOIs, ORCIDs, or Bibcodes (see
 Fig.~\ref{fig:extids}).  The  metadata schema is mainly defined by
 VOResource \citep{2018ivoa.spec.0625P} and VODataService
@@ -159,7 +159,7 @@ specifically \emph{not} designed as a persistent metadata repository
 that artefacts could reliably refer to as metadata sources.
 
 The IVOA Registry uses a unique identifier, the IVOID
-\citep{2016ivoa.spec.0523D}, as the primary key for it's resource
+\citep{2016ivoa.spec.0523D}, as the primary key for its resource
 collection.  By the above considerations, this IVOID is not suitable as a means of citation, because it is a technical identifier with no provisions for persistence.
 
 Both the Registry's metadata schema and the DataCite
@@ -168,7 +168,7 @@ derived from Dublin Core \citep{std:DUBLINCORE}.  While the extensions differ in
 hard to write a (not unreasonably lossy) mapping between the two metadata schemas.  This can enable
 sustainable citation by enrolling VO resources in DataCite's persistence
 mechanisms.  Even so, the provision of extensive in-document metadata
-has clear usability and practicality advantages, not to metion that many
+has clear usability and practicality advantages, not to mention that many
 pieces of data origin are unsuitable for a general metadata schema like
 DataCite's.
 
@@ -178,7 +178,7 @@ DataCite's.
 
 The Provenance Data Model \citep{2020ivoa.spec.0411S} is based on Entities, Agents and Activities as defined in the W3C Provenance model. The model's main focus is the detailed documentation of workflows.
 
-For the serialisation of ProvDM instances within VOTables, MIVOT \citep{2023ivoa.spec.0620M} is available.  At this point, however, the relatively complex model and many free parameters for instance serialisation are obstacles for a wide and direct adoption of ProvDM+MIVOT to represent Data Origin, in particular when compared to the very straightforward mechanisms proposed here.
+For the serialisation of ProvDM instances within VOTables, MIVOT \citep{2023ivoa.spec.0620M} is available.  At this point, however, the relatively complex model and many free parameters (for instance: serialisation) are obstacles for a wide and direct adoption of ProvDM+MIVOT to represent Data Origin, in particular when compared to the very straightforward mechanisms proposed here.
 
 
 %``Last-Step-Provenance'' is a Provenance extension currently under discussion which would define a list of metadata corresponding to Data Origin.  Its output will not be recursive and could be easily serialized in a table.\todo{If we write this here, everyone will ask: Well, so why don't we wait for that?  Perhaps we ought to just drop this?}
@@ -239,15 +239,15 @@ Data citation requires a persistent identifier and a sustainable URL.
 Both are guaranteed by DOI, but resource provided with an ivoid (the IVOA identifier)
 is not guaranteed to be sustainable.\\
 
-Bibtex requires curation that needs metadata like identifier, authors, title, publisher and date of publication.
-ADS (NASA) provides a citation capability for its indexed resources. This curation quality has to be privileged or may be took as example for any data providers and users.
+BibTeX requires curation that needs metadata-like identifier, authors, title, publisher and date of publication.
+ADS (NASA) provides a citation capability for its indexed resources. This curation quality has to be privileged or may be taken as example for any data providers and users.
 
-For instance, DOI providers like Datacite, provides a bibtex capability. The bibtex quality depends of the DOI metadata filled by the Data producers and publishers.\\
+For instance, DOI providers like Datacite, provides a BibTeX capability. The BibTeX quality depends of the DOI metadata filled by the Data producers and publishers.\\
 
 The IVOA registry which contains metadata for any resources could be used to get the expected quality for citation if the following conditions are met:
 \begin{itemize}
-\item the registry resource includes a persistent identifier (DOI)
-\item the registry resource includes the metadata which meets the bibtex requirements
+\item the registry resource includes a persistent identifier (DOI), typically in an \xmlel{altIdentifier} element
+\item the registry resource includes the metadata which meets the BibTeX requirements
 \end{itemize}
 
 % move metadata list : 23-nov-2023
@@ -372,12 +372,12 @@ This output is particularly suitable for protocols like Simple Cone Search.
 
 The basic serialization uses INFO tags to populate Data Origin (see the example of a ConeSearch result in appendix  \ref{sec:appendixA}).
 INFO tags are allowed in VOTable under \xmlel{VOTABLE} or in \xmlel{RESOURCE} elements.
-Thus, it becomes possible to annotate a collection of TABLE which are in different resources.
+Thus, it becomes possible to annotate a collection of \xmlel{TABLE} which are in different resources.
 
 This specification at this point does not constrain the multiplicities of individual INFO items, and clients should not fail hard if any given INFO item occurs multiple times.
 
-Complex queries (for instance, resulting from JOIN-s ADQL) need an advanced output serialization to gather metadata by resource.
-Mechanisms to manage this requirement are being developed in IVOA
+Complex queries (for instance, resulting from ADQL JOIN-s) need an advanced output serialization to gather metadata by resource.
+Mechanisms to manage this requirement are being developed in the IVOA
 (MIVOT).
 The mechanisms defined here are generally still applicable in these
 cases, but the authors acknowledge that they are certainly stretched to
@@ -479,7 +479,7 @@ date [Updated]&  last\_update\_date & Dates [updated] & last modification\\ \hli
   ?           &  original\_date & PublicationYear & publication year in data centre\\ \hline
 version       & resource\_version & Version &\\ \hline
 contact       & contact &&\\ \hline
-\multicolumn{4}{l}{\small \footnotesize(*) terms allowing name and Orcid (AltIdentifier in VOResurce)} \\
+\multicolumn{4}{l}{\small \footnotesize(*) terms allowing name and Orcid (\xmlel{altIdentifier} in VOResurce)} \\
 \end{tabular}
 
 \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{5cm}|} \hline
