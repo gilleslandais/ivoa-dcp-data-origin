@@ -246,7 +246,7 @@ For instance, DOI providers like Datacite, provides a bibtex capability. The bib
 
 The IVOA registry which contains metadata for any resources could be used to get the expected quality for citation if the following conditions are met:
 \begin{itemize}
-\item the registry resource includes a persistent identifier (DOI), typically in its altIdentifier element
+\item the registry resource includes a persistent identifier (DOI), typically in an \xmlel{altIdentifier} element
 \item the registry resource includes the metadata which meets the bibtex requirements
 \end{itemize}
 
@@ -479,7 +479,7 @@ date [Updated]&  last\_update\_date & Dates [updated] & last modification\\ \hli
   ?           &  original\_date & PublicationYear & publication year in data centre\\ \hline
 version       & resource\_version & Version &\\ \hline
 contact       & contact &&\\ \hline
-\multicolumn{4}{l}{\small \footnotesize(*) terms allowing name and Orcid (AltIdentifier in VOResurce)} \\
+\multicolumn{4}{l}{\small \footnotesize(*) terms allowing name and Orcid (\xmlel{altIdentifier} in VOResurce)} \\
 \end{tabular}
 
 \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{5cm}|} \hline
